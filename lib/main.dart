@@ -5,6 +5,7 @@ import 'package:fonote_demo/second_page/mynotecatlog.dart';
 
 // import 'package:fonote_demo/second_page/sencondscreen.dart';
 // import 'package:fonote_demo/tools/tools.dart';
+// test
 
 void main() {
   runApp(FooNoteApp());
