@@ -110,9 +110,10 @@ class MyNotesAreaState extends State<MyNotesArea> {
             print("已存在同名笔记本，无法继续添加");
           } else {
             _myNotesNamesList.add(noteBookName);
+            //setState((){});
             Navigator.of(context).pushNamed('/page1');
             // _setNoteBookState();
-            // setState((){});
+
             // setState();
           }
         }
@@ -160,9 +161,9 @@ class MyNotesAreaState extends State<MyNotesArea> {
     print("尝试查找名字包含<$noteBookName>的笔记本.");
   }
 
-  void _setNoteBookState() {
-    setState(() {});
-  }
+  // void _setNoteBookState() {
+  //   setState(() {});
+  // }
 
   @override
   Widget build(BuildContext context) {
