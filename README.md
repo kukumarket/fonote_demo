@@ -5,7 +5,10 @@
 ## Getting Started
 
 This project is a starting point for a Flutter application.
+
 基于多平台支持的需要，这个项目是flutter程序。
+
+下面的内容是fluter官方提供的资源。
 
 A few resources to get you started if this is your first Flutter project:
 

@@ -3,13 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:fonote_demo/second_page/mynotes.dart';
 import 'package:fonote_demo/second_page/mynotecatlog.dart';
 
-// import 'package:fonote_demo/second_page/sencondscreen.dart';
-// import 'package:fonote_demo/tools/tools.dart';
-// test
-
 void main() {
   runApp(FooNoteApp());
-  //fooNoteApp是欢迎页面
+  //fooNoteApp是本程序的主进程
   //接下是4个主页面
   //名字 - 类名 - 说明
   //page1 - MyNotes - 我的笔记
@@ -27,14 +23,7 @@ class FooNoteApp extends StatelessWidget {
       //title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
+
         primarySwatch: Colors.blue,
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and
@@ -53,22 +42,24 @@ class FooNoteApp extends StatelessWidget {
   }
 }
 
+//定时器放在类定义中的时候，会引起
+//This class (or a class that this class inherits from) is marked as '@immutable',
+//but one or more of its instance fields aren't final: MyWelComePage.welcomTimer
+//因此将_welcomTimer更改为 welcomTimer，并放到类外。
+Timer welcomTimer;
+
 class MyWelComePage extends StatelessWidget {
   MyWelComePage({Key key, this.parameter}) : super(key: key);
   final parameter;
-  Timer _welcomTimer;
+
   @override
   Widget build(BuildContext context) {
-    _welcomTimer = new Timer(new Duration(seconds: 5), () {
+    welcomTimer = new Timer(new Duration(seconds: 5), () {
       // 只在倒计时结束时回调
       print("已到5秒,前往笔记页面. ");
       Navigator.of(context).pushNamed('/page1');
-      _welcomTimer.cancel();
+      welcomTimer.cancel();
     });
-    // new Future.delayed(Duration(seconds: 5)).then((value) =>
-    // {
-
-    // });
     return Scaffold(
       // backgroundColor: Color(0xFFAAC8DC),
 

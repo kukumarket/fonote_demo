@@ -92,6 +92,7 @@ class MyNotesArea extends StatefulWidget {
 }
 
 List<String> _myNotesNamesList = ["添加笔记本"];
+bool _canOverLay = false;
 
 class MyNotesAreaState extends State<MyNotesArea> {
   static OverlayEntry _overlayEntry = OverlayEntry(
@@ -114,7 +115,6 @@ class MyNotesAreaState extends State<MyNotesArea> {
             Navigator.of(context).pushNamed('/page1');
             // _setNoteBookState();
 
-            // setState();
           }
         }
         _overlayEntry.remove();
@@ -155,7 +155,6 @@ class MyNotesAreaState extends State<MyNotesArea> {
     },
   );
 
-  bool _canOverLay = false;
   //根据给定的笔记本名,查找笔记本的逻辑
   void _findNoteBook(String noteBookName) {
     print("尝试查找名字包含<$noteBookName>的笔记本.");
