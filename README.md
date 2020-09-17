@@ -1,10 +1,11 @@
 # fonote_demo
 
-A new Flutter project.
+这是千里笔记的DEMO程序.
 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
+基于多平台支持的需要，这个项目是flutter程序。
 
 A few resources to get you started if this is your first Flutter project:
 
