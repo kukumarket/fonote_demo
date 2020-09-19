@@ -6,7 +6,7 @@
 
 This project is a starting point for a Flutter application.
 
-基于多平台支持的需要，这个项目是flutter程序。
+基于多平台支持的需要，这个项目使用flutter技术。
 
 下面的内容是fluter官方提供的资源。
 

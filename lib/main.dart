@@ -33,9 +33,10 @@ class FooNoteApp extends StatelessWidget {
       // home: WelcomePage(title: '千里之行 始于足下---'),
       home: MyWelComePage(),
       routes: <String, WidgetBuilder>{
-        '/page1': (BuildContext context) => new MyNotePage(), //此界面显示我的笔记本
-        '/page2': (BuildContext context) =>
-            new MyNoteCatlogPage(), //此界面显示给定笔记本中的笔记列表
+        //此界面显示我的笔记本
+        '/page1': (BuildContext context) => new MyNotePage(),
+        //此界面显示给定笔记本中的笔记列表
+        '/page2': (BuildContext context) => new MyNoteCatlogPage(),
         //'/page3':(BuildContext context) => new MyNoteEditPage(),//此界面显示指定笔记的编辑页面
       },
     );

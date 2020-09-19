@@ -12,7 +12,18 @@ class MyNoteCatlogPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Icon(IconData(0xe632, fontFamily: 'NoteIcons'), size: 32),
         title: Text("我的笔记本"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(IconData(0xe7b6, fontFamily: 'NoteIcons'), size: 32),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(IconData(0xe723, fontFamily: 'NoteIcons'), size: 32),
+            onPressed: () {},
+          )
+        ],
       ),
       body: Center(
         // child:
@@ -23,13 +34,11 @@ class MyNoteCatlogPage extends StatelessWidget {
         child: MyNoteCatlogArea(),
       ),
 
-      //floatingActionButton:
-      //	FloatingActionButton
-      //	(
-      //		onPressed: _addNewNoteBook,
-      //		tooltip: 'Increment',
-      //		child: Icon(Icons.add),
-      //	),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        tooltip: '添加新的笔记',
+        child: Icon(Icons.add),
+      ),
       // This trailing comma makes auto-formatting nicer for build methods.
 
       bottomNavigationBar: BottomNavigationBar(
@@ -71,8 +80,42 @@ class MyNoteCatlogAreaState extends State<MyNoteCatlogArea> {
 
   ListView _getNoteCatlogList() {
     return ListView(
-      itemExtent: 30.0,
+      itemExtent: 80.0,
       children: [
+        getListItem(
+            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
+        getListItem(
+            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
+        getListItem(
+            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
+        getListItem(
+            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
+        getListItem(
+            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
+        getListItem(
+            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
+        getListItem(
+            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
+        getListItem(
+            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
+        getListItem(
+            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
+        getListItem(
+            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
+        getListItem(
+            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
+        getListItem(
+            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
+        getListItem(
+            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
+        getListItem(
+            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
+        getListItem(
+            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
+        getListItem(
+            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
+        getListItem(
+            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
         getListItem('今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit)
       ],
     );
