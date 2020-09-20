@@ -82,6 +82,10 @@ class MyNoteCatlogAreaState extends State<MyNoteCatlogArea> {
     return ListView(
       itemExtent: 80.0,
       children: [
+        Divider(
+          height: 3,
+          color: Colors.black,
+        ),
         getListItem(
             '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
         getListItem(
@@ -92,6 +96,10 @@ class MyNoteCatlogAreaState extends State<MyNoteCatlogArea> {
             '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
         getListItem(
             '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
+        Divider(
+          height: 3,
+          color: Colors.black,
+        ),
         getListItem(
             '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
         getListItem(
