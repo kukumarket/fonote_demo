@@ -82,9 +82,46 @@ class MyNoteCatlogAreaState extends State<MyNoteCatlogArea> {
     return ListView(
       itemExtent: 80.0,
       children: [
-        Divider(
-          height: 3,
-          color: Colors.black,
+        // Container(
+        //   alignment: Alignment.center,
+        //   child:
+        // ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("images/line-01.png"),
+            SizedBox(width: 50), // 50宽度
+            Text(
+              "2020年09月",
+              style: TextStyle(fontSize: 22),
+            ),
+            SizedBox(width: 50), // 50宽度
+            Image.asset("images/line-01.png"),
+          ],
+        ),
+        Row(
+          children: [
+            SizedBox(width: 50), // 50宽度
+            Column(
+              children: [Text("9月21日"), Text("星期一")],
+            ),
+            SizedBox(width: 30), // 50宽度
+            Column(
+              children: [Text("今天的长城也很平静"), Text("非常平常的一天，护卫队没有什么大事。")],
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            SizedBox(width: 50), // 50宽度
+            Column(
+              children: [Text("9月21日"), Text("星期一")],
+            ),
+            SizedBox(width: 30), // 50宽度
+            Column(
+              children: [Text("再多喜欢阿离一点"), Text("可以吗？")],
+            ),
+          ],
         ),
         getListItem(
             '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
