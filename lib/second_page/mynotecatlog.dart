@@ -35,7 +35,10 @@ class MyNoteCatlogPage extends StatelessWidget {
       ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          print("需要添加新的笔记内容。尝试跳转到页面 page3");
+          Navigator.of(context).pushNamed('/page3');
+        },
         tooltip: '添加新的笔记',
         child: Icon(Icons.add),
       ),
