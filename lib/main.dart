@@ -39,8 +39,8 @@ class FooNoteApp extends StatelessWidget {
         //此界面显示给定笔记本中的笔记列表
         '/page2': (BuildContext context) => new MyNoteCatlogPage(),
 
-        '/page3': (BuildContext context) =>
-            new MyNoteEditPage(), //此界面显示指定笔记的编辑页面
+        //此界面显示指定笔记的编辑页面
+        '/page3': (BuildContext context) => new MyNoteEditPage(),
       },
     );
   }

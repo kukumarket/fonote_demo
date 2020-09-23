@@ -15,11 +15,11 @@ class MyNoteEditPage extends StatelessWidget {
         title: Text("笔记编辑页面"),
         actions: <Widget>[
           IconButton(
-            icon: Icon(IconData(0xe662, fontFamily: 'NoteIcons'), size: 32),
+            icon: Icon(IconData(0xe603, fontFamily: 'NoteIcons'), size: 32),
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(IconData(0xe603, fontFamily: 'NoteIcons'), size: 32),
+            icon: Icon(IconData(0xe662, fontFamily: 'NoteIcons'), size: 32),
             onPressed: () {},
           )
         ],
