@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fonote_demo/second_page/mynotes.dart';
 import 'package:fonote_demo/second_page/mynotecatlog.dart';
 import 'package:fonote_demo/second_page/mynoteedit.dart';
+import 'package:fonote_demo/second_page/notesquare.dart';
 
 void main() {
   runApp(FooNoteApp());
@@ -41,6 +42,9 @@ class FooNoteApp extends StatelessWidget {
 
         //此界面显示指定笔记的编辑页面
         '/page3': (BuildContext context) => new MyNoteEditPage(),
+
+        //笔记广场页面
+        '/page4': (BuildContext context) => new MyNoteSquarePage(),
       },
     );
   }

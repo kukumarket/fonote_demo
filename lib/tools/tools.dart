@@ -124,3 +124,29 @@ TextField getTextField(
     onSubmitted: txtCallback,
   );
 }
+
+List<BottomNavigationBarItem> getBottomNavigation() {
+  List<BottomNavigationBarItem> mBottomNavigationList = [
+    getBottomNavigationBar(Icons.print, Colors.blue, 30, "个人笔记"),
+    getBottomNavigationBar(Icons.print, Colors.blue, 30, "笔记广场"),
+    getBottomNavigationBar(Icons.print, Colors.blue, 30, "千里官宣"),
+    getBottomNavigationBar(Icons.print, Colors.blue, 30, "我的")
+  ];
+  return mBottomNavigationList;
+}
+
+BottomNavigationBar getBottomToolBar(BuildContext context) {
+  return BottomNavigationBar(
+    onTap: (value) {
+      print("bottomnavigation click : $value");
+      if (value == 0) {
+        Navigator.of(context).pushNamed('/page1');
+      } else if (value == 1) {
+        Navigator.of(context).pushNamed('/page4');
+      } else if (value == 2) {
+      } else if (value == 3) {}
+    },
+    items: getBottomNavigation(),
+    type: BottomNavigationBarType.fixed,
+  );
+}

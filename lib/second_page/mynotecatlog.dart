@@ -44,15 +44,16 @@ class MyNoteCatlogPage extends StatelessWidget {
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
 
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          getBottomNavigationBar(Icons.print, Colors.blue, 30, "个人笔记"),
-          getBottomNavigationBar(Icons.print, Colors.blue, 30, "笔记广场"),
-          getBottomNavigationBar(Icons.print, Colors.blue, 30, "千里官宣"),
-          getBottomNavigationBar(Icons.print, Colors.blue, 30, "我的"),
-        ],
-        type: BottomNavigationBarType.fixed,
-      ),
+      bottomNavigationBar: getBottomToolBar(context),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: [
+      //     getBottomNavigationBar(Icons.print, Colors.blue, 30, "个人笔记"),
+      //     getBottomNavigationBar(Icons.print, Colors.blue, 30, "笔记广场"),
+      //     getBottomNavigationBar(Icons.print, Colors.blue, 30, "千里官宣"),
+      //     getBottomNavigationBar(Icons.print, Colors.blue, 30, "我的"),
+      //   ],
+      //   type: BottomNavigationBarType.fixed,
+      // ),
     );
   }
 }

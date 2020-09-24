@@ -19,64 +19,27 @@ class MyNotePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      // 	title: Text("个人笔记 - 我的笔记本"),
-      // ),
-      body: Center(
-        // child:
-        // GestureDetector(
-        // onTap: (){},
-        // child: MyNotesArea(),
+        // appBar: AppBar(
+        // 	title: Text("个人笔记 - 我的笔记本"),
         // ),
-        child: MyNotesArea(),
-      ),
-
-      //floatingActionButton:
-      //	FloatingActionButton
-      //	(
-      //		onPressed: _addNewNoteBook,
-      //		tooltip: 'Increment',
-      //		child: Icon(Icons.add),
-      //	),
-      // This trailing comma makes auto-formatting nicer for build methods.
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          // BottomNavigationBarItem(
-          //     icon: Icon(
-          //       Icons.print,
-          //       color: Colors.blue,
-          //       size: 30,
-          //     ),
-          //     title: Text("个人笔记")),
-          // BottomNavigationBarItem(
-          //     icon: Icon(
-          //       Icons.print,
-          //       color: Colors.blue,
-          //       size: 30,
-          //     ),
-          //     title: Text("笔记广场")),
-          // BottomNavigationBarItem(
-          //     icon: Icon(
-          //       Icons.print,
-          //       color: Colors.blue,
-          //       size: 30,
-          //     ),
-          //     title: Text("千里笔记")),
-          // BottomNavigationBarItem(
-          // icon: Icon(
-          //   Icons.print,
-          //   color: Colors.blue,
-          //   size: 30,
+        body: Center(
+          // child:
+          // GestureDetector(
+          // onTap: (){},
+          // child: MyNotesArea(),
           // ),
-          // title: Text("我的")),
-          getBottomNavigationBar(Icons.print, Colors.blue, 30, "个人笔记"),
-          getBottomNavigationBar(Icons.print, Colors.blue, 30, "笔记广场"),
-          getBottomNavigationBar(Icons.print, Colors.blue, 30, "千里官宣"),
-          getBottomNavigationBar(Icons.print, Colors.blue, 30, "我的"),
-        ],
-        type: BottomNavigationBarType.fixed,
-      ),
-    );
+          child: MyNotesArea(),
+        ),
+
+        //floatingActionButton:
+        //	FloatingActionButton
+        //	(
+        //		onPressed: _addNewNoteBook,
+        //		tooltip: 'Increment',
+        //		child: Icon(Icons.add),
+        //	),
+        // This trailing comma makes auto-formatting nicer for build methods.
+        bottomNavigationBar: getBottomToolBar(context));
   }
 }
 
