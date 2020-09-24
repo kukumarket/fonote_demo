@@ -4,6 +4,7 @@ import 'package:fonote_demo/second_page/mynotes.dart';
 import 'package:fonote_demo/second_page/mynotecatlog.dart';
 import 'package:fonote_demo/second_page/mynoteedit.dart';
 import 'package:fonote_demo/second_page/notesquare.dart';
+import 'package:fonote_demo/second_page/qianlicommunity.dart';
 
 void main() {
   runApp(FooNoteApp());
@@ -45,6 +46,8 @@ class FooNoteApp extends StatelessWidget {
 
         //笔记广场页面
         '/page4': (BuildContext context) => new MyNoteSquarePage(),
+        //千里社区页面
+        '/page5': (BuildContext context) => new MyQianLiCommunityPage(),
       },
     );
   }

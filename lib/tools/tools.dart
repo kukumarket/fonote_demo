@@ -144,6 +144,7 @@ BottomNavigationBar getBottomToolBar(BuildContext context) {
       } else if (value == 1) {
         Navigator.of(context).pushNamed('/page4');
       } else if (value == 2) {
+        Navigator.of(context).pushNamed('/page5');
       } else if (value == 3) {}
     },
     items: getBottomNavigation(),
