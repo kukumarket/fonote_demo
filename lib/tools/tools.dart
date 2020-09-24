@@ -145,9 +145,24 @@ BottomNavigationBar getBottomToolBar(BuildContext context) {
         Navigator.of(context).pushNamed('/page4');
       } else if (value == 2) {
         Navigator.of(context).pushNamed('/page5');
-      } else if (value == 3) {}
+      } else if (value == 3) {
+        Navigator.of(context).pushNamed('/page6');
+      }
     },
     items: getBottomNavigation(),
     type: BottomNavigationBarType.fixed,
+  );
+}
+
+ListTile getMyInfoListTitle(IconData iconData, String title) {
+  return ListTile(
+    leading: Icon(iconData, size: 32),
+    title: Text(
+      title,
+      style: TextStyle(fontSize: 24),
+    ),
+    trailing: Icon(IconData(0xe7eb, fontFamily: 'NoteIcons'), size: 32),
+    isThreeLine: false,
+    enabled: true,
   );
 }
