@@ -1,0 +1,18 @@
+{
+    //这确保我们在项目根目录中创建的所有新文件中使用制表符而不是空格。
+    "editor.insertSpaces": false,
+
+    //这激活了 VS Code 中的换行，这样你就不用水平滚动了。
+    "editor.wrappingColumn": 0,
+
+    //在您键入时禁用快速建议。否则，VS Code 将在您键入时提示文档中已经存在的单词。
+    //"editor.quickSuggestions": false,
+
+    
+    // 这提供了与 Pandoc 一起使用的命令行选项。有关所有可用选项，请参阅 Pandoc 文档。在我们的案例中，我们包括以下选项：
+    // -s(创建一个独立的 HTML 文档，其中包含 <head>、<body> 等等，而不仅仅是一个 HTML 片段)。
+    // -f gfm(从 GitHub 风味的 Markdown 语法转换而来，它提供了所有标准的 Markdown 特性，以及 Adam Pritchard 的 Markdown Cheatsheet 中描述的一些额外功能)。
+    // -t html5(转换为 HTML5 格式)
+    // --css=css/style.css(在生成的 HTML 文件中包含指向 css/style.css 文件的链接。
+    "pandoc.htmlOptString": "-s -f gfm -t html5 --css=css/style.css"
+}

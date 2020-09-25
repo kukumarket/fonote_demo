@@ -6,6 +6,12 @@ import 'package:fonote_demo/second_page/mynoteedit.dart';
 import 'package:fonote_demo/second_page/notesquare.dart';
 import 'package:fonote_demo/second_page/qianlicommunity.dart';
 import 'package:fonote_demo/second_page/myinformation.dart';
+import 'package:fonote_demo/second_page/p3-modifyinfo.dart';
+import 'package:fonote_demo/second_page/p3-password.dart';
+import 'package:fonote_demo/second_page/p3-drink.dart';
+import 'package:fonote_demo/second_page/p3-recyle.dart';
+import 'package:fonote_demo/second_page/p3-mailtous.dart';
+import 'package:fonote_demo/second_page/p3-copyright.dart';
 
 void main() {
   runApp(FooNoteApp());
@@ -47,10 +53,30 @@ class FooNoteApp extends StatelessWidget {
 
         //笔记广场页面
         '/page4': (BuildContext context) => new MyNoteSquarePage(),
+
         //千里社区页面
         '/page5': (BuildContext context) => new MyQianLiCommunityPage(),
-        //千里社区页面
+
+        //我的信息页面
         '/page6': (BuildContext context) => new MyInfomationPage(),
+
+        //我的信息-子页面-1
+        '/page7': (BuildContext context) => new ModifyMyInfomationPage(),
+
+        //我的信息-子页面-2
+        '/page8': (BuildContext context) => new ModifyPassPage(),
+
+        //我的信息-子页面-3
+        '/page9': (BuildContext context) => new DrinkPage(),
+
+        //我的信息-子页面-4
+        '/page10': (BuildContext context) => new RecylePage(),
+
+        //我的信息-子页面-5
+        '/page11': (BuildContext context) => new MailToUsPage(),
+
+        //我的信息-子页面-6
+        '/page12': (BuildContext context) => new CopyRightPage(),
       },
     );
   }

@@ -154,7 +154,8 @@ BottomNavigationBar getBottomToolBar(BuildContext context) {
   );
 }
 
-ListTile getMyInfoListTitle(IconData iconData, String title) {
+ListTile getMyInfoListTitle(
+    IconData iconData, String title, BuildContext context, String goPage) {
   return ListTile(
     leading: Icon(iconData, size: 32),
     title: Text(
@@ -162,6 +163,10 @@ ListTile getMyInfoListTitle(IconData iconData, String title) {
       style: TextStyle(fontSize: 24),
     ),
     trailing: Icon(IconData(0xe7eb, fontFamily: 'NoteIcons'), size: 32),
+    onTap: () {
+      print("click title = $title");
+      Navigator.of(context).pushNamed(goPage);
+    },
     isThreeLine: false,
     enabled: true,
   );

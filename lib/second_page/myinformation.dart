@@ -1,7 +1,7 @@
-import 'dart:ui';
+// import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+// import 'package:flutter/rendering.dart';
 import 'package:fonote_demo/tools/tools.dart';
 
 ////////////////////////////////
@@ -14,7 +14,6 @@ import 'package:fonote_demo/tools/tools.dart';
 
 class MyInfomationPage extends StatelessWidget {
   // Default placeholder text
-  // ScrollController _controller = new ScrollController(); // 定义用于笔记本列表的滚动控制器
 
   @override
   Widget build(BuildContext context) {
@@ -68,21 +67,19 @@ class MyInfomationAreaState extends State<MyInfomationArea> {
     return ListView(
       itemExtent: 80.0,
       children: [
-        getMyInfoListTitle(IconData(0xe60b, fontFamily: 'NoteIcons'), "修改信息"),
-        getMyInfoListTitle(IconData(0xe66d, fontFamily: 'NoteIcons'), "密码设置"),
-        getMyInfoListTitle(IconData(0xe6aa, fontFamily: 'NoteIcons'), "请我们喝汽水"),
-        getMyInfoListTitle(IconData(0xe633, fontFamily: 'NoteIcons'), "回收站"),
-        getMyInfoListTitle(IconData(0xe63e, fontFamily: 'NoteIcons'), "意见反馈"),
-        getMyInfoListTitle(
-            IconData(0xe6b5, fontFamily: 'NoteIcons'), "版权及免责声明"),
+        getMyInfoListTitle(IconData(0xe60b, fontFamily: 'NoteIcons'), "修改信息",
+            context, '/page7'),
+        getMyInfoListTitle(IconData(0xe66d, fontFamily: 'NoteIcons'), "密码设置",
+            context, '/page8'),
+        getMyInfoListTitle(IconData(0xe6aa, fontFamily: 'NoteIcons'), "请我们喝汽水",
+            context, '/page9'),
+        getMyInfoListTitle(IconData(0xe633, fontFamily: 'NoteIcons'), "回收站",
+            context, '/page10'),
+        getMyInfoListTitle(IconData(0xe63e, fontFamily: 'NoteIcons'), "意见反馈",
+            context, '/page11'),
+        getMyInfoListTitle(IconData(0xe6b5, fontFamily: 'NoteIcons'), "版权及免责声明",
+            context, '/page12'),
       ],
     );
   }
-
-  void _onnoteedit() {
-    //该函数被调用时, 使用此函数作为参数的函数中, 应当已经做了处理
-    //比如确认是哪个按钮被按下flu
-    // setState((){});
-  }
-  // static OverlayEntry _getNotesAddOverlayEntry
 }
