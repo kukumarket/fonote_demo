@@ -5,56 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:fonote_demo/tools/tools.dart';
 
 ////////////////////////////////
-List<String> _myNotesNamesList = [];
-bool _canOverLay = false;
-OverlayEntry _overlayEntry = OverlayEntry(
-  builder: (context) {
-    var screenSize = window.physicalSize; //屏幕分辨率
-    var screenPixelRatio = MediaQuery.of(context).devicePixelRatio;
-    print("屏幕尺寸为 $screenSize"); //输出屏幕尺寸
-    print("屏幕像素密度为 $screenPixelRatio"); //输出像素密度
 
-    void _createNoteBook(String noteBookName) {
-      print("尝试创建$noteBookName");
-      if (noteBookName != "") {
-        if (_myNotesNamesList.indexOf(noteBookName) >= 0) {
-          print("已存在同名笔记本，无法继续添加");
-        } else {
-          _myNotesNamesList.add(noteBookName);
-          // setState(() {});
-          Navigator.of(context).pushNamed('/page1');
-          // _setNoteBookState();
-
-        }
-      }
-      _canOverLay = false;
-      _overlayEntry.remove();
-    }
-
-    return new Center(
-      child: GestureDetector(
-        child: new Container(
-          width: screenSize.width / screenPixelRatio * 0.95,
-          height: screenSize.height / screenPixelRatio * 0.25,
-          child: new Card(
-            child: new Padding(
-              padding: EdgeInsets.all(8),
-              child: new Column(
-                children: [
-                  getTextField("请在这里输入新笔记本的名字。", "创建笔记本", _createNoteBook),
-                  getMyNoteColorPanel(context),
-                ],
-              ),
-            ),
-            color: Colors.green[100],
-          ),
-        ),
-      ),
-    );
-  },
-);
-
-////////////////////////////////
 class MyNotePage extends StatelessWidget {
   // Default placeholder text
   // ScrollController _controller = new ScrollController(); // 定义用于笔记本列表的滚动控制器
@@ -74,18 +25,9 @@ class MyNotePage extends StatelessWidget {
           child: MyNotesArea(),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            if (_canOverLay == false) {
-              _canOverLay = true;
-              print("需要进入添加笔记本流程");
-              Overlay.of(context).insert(_overlayEntry);
-            }
-          },
-          tooltip: '添加笔记本',
-          child: Icon(
-            Icons.note_add,
-            size: 40,
-          ),
+          onPressed: () {},
+          tooltip: 'Increment',
+          child: Icon(Icons.add),
         ),
         // This trailing comma makes auto-formatting nicer for build methods.
         bottomNavigationBar: getBottomToolBar(context));
@@ -103,7 +45,64 @@ class MyNotesArea extends StatefulWidget {
   }
 }
 
+List<String> _myNotesNamesList = [];
+bool _canOverLay = false;
+
 class MyNotesAreaState extends State<MyNotesArea> {
+  static OverlayEntry _overlayEntry = OverlayEntry(
+    builder: (context) {
+      var screenSize = window.physicalSize; //屏幕分辨率
+      var screenPixelRatio = MediaQuery.of(context).devicePixelRatio;
+      print("屏幕尺寸为 $screenSize"); //输出屏幕尺寸
+      print("屏幕像素密度为 $screenPixelRatio"); //输出像素密度
+
+// print(screenSize.width / screenPixelRatio);
+// print(screenSize.height / screenPixelRatio);
+      void _createNoteBook(String noteBookName) {
+        print("尝试创建$noteBookName");
+        if (noteBookName != "") {
+          if (_myNotesNamesList.indexOf(noteBookName) >= 0) {
+            print("已存在同名笔记本，无法继续添加");
+          } else {
+            _myNotesNamesList.add(noteBookName);
+            //setState((){});
+            Navigator.of(context).pushNamed('/page1');
+            // _setNoteBookState();
+
+          }
+        }
+        _overlayEntry.remove();
+      }
+
+      return
+// new Positioned(
+// //	 top: MediaQuery.of(context).size.height * 0.8,
+// top: (screenSize.height / 2) / 2.625,
+// child:
+          new Center(
+        child: GestureDetector(
+          child: new Container(
+            width: screenSize.width / screenPixelRatio * 0.95,
+            height: screenSize.height / screenPixelRatio * 0.25,
+            child: new Card(
+              child: new Padding(
+                padding: EdgeInsets.all(8),
+                child: new Column(
+                  children: [
+                    getTextField("请在这里输入新笔记本的名字。", "创建笔记本", _createNoteBook),
+                    getMyNoteColorPanel(context),
+                  ],
+                ),
+              ),
+              color: Colors.green[100],
+            ),
+          ),
+        ),
+//	 ),
+      );
+    },
+  );
+
   //根据给定的笔记本名,查找笔记本的逻辑
   void _findNoteBook(String noteBookName) {
     print("尝试查找名字包含<$noteBookName>的笔记本.");
@@ -125,11 +124,6 @@ class MyNotesAreaState extends State<MyNotesArea> {
     );
   }
 
-  // _addNote(String noteName) {
-  //   setState(() {
-  //     _myNotesNamesList.add(noteName);
-  //   });
-  // }
   //////////////////////////////////////////////
   ///
   ///
@@ -149,8 +143,17 @@ class MyNotesAreaState extends State<MyNotesArea> {
             // onPressed: callback),
             onPressed: () => {
                   print("[$item] 按钮被按下!_canOverLay is $_canOverLay"),
-                  print("需要进入调用笔记流程"),
-                  Navigator.of(context).pushNamed('/page2'),
+                  if (item == "添加笔记本")
+                    {
+                      _canOverLay = true,
+                      print("需要进入添加笔记本流程"),
+                      Overlay.of(context).insert(_overlayEntry),
+                    }
+                  else
+                    {
+                      print("需要进入调用笔记流程"),
+                      Navigator.of(context).pushNamed('/page2'),
+                    }
                 }),
         new Container(
           margin: const EdgeInsets.only(top: 8.0),
@@ -182,33 +185,8 @@ class MyNotesAreaState extends State<MyNotesArea> {
     }).toList();
   }
 
-  // //获得笔记本网格组件
-  // Expanded getNoteBookGrid() {
-  //   return Expanded(
-  //     child: GestureDetector(
-  //       onTap: () {
-  //         print("_canOverLay is $_canOverLay");
-  //         if (_canOverLay) {
-  //           _overlayEntry.remove();
-  //           _canOverLay = false;
-  //         }
-  //       },
-  //       child: GridView(
-  //         primary: false,
-  //         shrinkWrap: true,
-  //         scrollDirection: Axis.vertical,
-  //         controller: ScrollController(), // 设置控制器
-  //         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-  //             crossAxisCount: 4, //横轴三个子widget
-  //             childAspectRatio: 1.0 //宽高比为1时，子widge
-  //             ),
-  //         children: _getNoteBooksList(),
-  //       ),
-  //     ),
-  //   );
-  // }
-
-  Expanded getNotesGrid() {
+  //获得笔记本网格组件
+  Expanded getNoteBookGrid() {
     return Expanded(
       child: GestureDetector(
         onTap: () {
@@ -228,6 +206,23 @@ class MyNotesAreaState extends State<MyNotesArea> {
               childAspectRatio: 1.0 //宽高比为1时，子widge
               ),
           children: _getNoteBooksList(),
+        ),
+      ),
+    );
+  }
+
+  Expanded getNotesGrid() {
+    return Expanded(
+      child: GestureDetector(
+        child: GridView(
+          primary: false,
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          controller: ScrollController(), // 设置控制器
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4, //横轴三个子widget
+              childAspectRatio: 1.0 //宽高比为1时，子widge
+              ),
         ),
       ),
     );
