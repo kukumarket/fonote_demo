@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fonote_demo/tools/tools.dart';
+import 'package:fonote_demo/db/dbmanager.dart';
 
 ////////////////////////////////
 List<String> _myNotesNamesList = [];
@@ -112,9 +113,15 @@ class MyNotesAreaState extends State<MyNotesArea> {
   // void _setNoteBookState() {
   //   setState(() {});
   // }
+  void getNoteNames() async {
+    // DBManager.init("fonote.db");
+    _myNotesNamesList = await DBManager.getTableNamesFromDB();
+    DBManager.close();
+  }
 
   @override
   Widget build(BuildContext context) {
+    getNoteNames();
     return Column(
       children: [
         getMyNoteTitleImage(),
@@ -124,18 +131,6 @@ class MyNotesAreaState extends State<MyNotesArea> {
       ],
     );
   }
-
-  // _addNote(String noteName) {
-  //   setState(() {
-  //     _myNotesNamesList.add(noteName);
-  //   });
-  // }
-  //////////////////////////////////////////////
-  ///
-  ///
-  ///
-  ///
-  ///
 
   Column _buildNoteButtonColumn(IconData iconData, String item) {
     Color color = Theme.of(context).primaryColor;
@@ -181,32 +176,6 @@ class MyNotesAreaState extends State<MyNotesArea> {
       }
     }).toList();
   }
-
-  // //获得笔记本网格组件
-  // Expanded getNoteBookGrid() {
-  //   return Expanded(
-  //     child: GestureDetector(
-  //       onTap: () {
-  //         print("_canOverLay is $_canOverLay");
-  //         if (_canOverLay) {
-  //           _overlayEntry.remove();
-  //           _canOverLay = false;
-  //         }
-  //       },
-  //       child: GridView(
-  //         primary: false,
-  //         shrinkWrap: true,
-  //         scrollDirection: Axis.vertical,
-  //         controller: ScrollController(), // 设置控制器
-  //         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-  //             crossAxisCount: 4, //横轴三个子widget
-  //             childAspectRatio: 1.0 //宽高比为1时，子widge
-  //             ),
-  //         children: _getNoteBooksList(),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   Expanded getNotesGrid() {
     return Expanded(

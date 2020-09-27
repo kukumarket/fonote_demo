@@ -129,6 +129,33 @@ class DBManager {
     return await _database.execute(sql);
   }
 
+  static getTableNamesFromDB() async {
+    var sql =
+        "select name from sqlite_master where type = 'table' and name <> 'android_metadata'";
+    await init("fonote.db");
+    List<String> tableNames = [];
+    List<Map> list = [];
+    if (_database != null) {
+      list = await _database.rawQuery(sql);
+      int ni = 0;
+      if (list.isNotEmpty) {
+        list.forEach((element) {
+          tableNames.add(element.values.elementAt(ni));
+          ni++;
+        });
+      }
+    }
+
+    return tableNames;
+    // list.forEach((element) {
+    //   print("element.toString();" + element.toString());
+    //   print("element.values.toString();" + element.values.toString());
+    //   print("element.keys.toString();" + element.keys.toString());
+    //   print("element.keys.elementAt(ni);" + element.keys.elementAt(ni));
+    //   print("element.values.elementAt(ni);" + element.values.elementAt(ni));
+    // });
+  }
+
   static Future<Database> getCurrentDatabase(String stDBName) async {
     if (_database == null) {
       await init(stDBName);
@@ -137,7 +164,9 @@ class DBManager {
   }
 
   static close() {
-    _database.close();
-    _database = null;
+    if (_database != null) {
+      _database.close();
+      _database = null;
+    }
   }
 }

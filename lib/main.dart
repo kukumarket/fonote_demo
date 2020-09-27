@@ -117,6 +117,7 @@ class MyWelComePage extends StatelessWidget {
     dbinit();
 
     print("uuid is " + UidTool.getuuid());
+
     welcomTimer = new Timer(new Duration(seconds: 5), () {
       // 只在倒计时结束时回调
       print("已到5秒,前往笔记页面. ");
