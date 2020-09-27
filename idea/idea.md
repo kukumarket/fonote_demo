@@ -29,6 +29,7 @@
 页码 内容
 内容字段存放的值，为markdown格式的文本。
 问题：只有一个数据库，是否安全？
+但是这种模式，如果要对笔记本进行分组，比较好处理。
 #### 每个笔记本是一个独立的数据库
 这个模式里，每个笔记本都是独立的数据库。
 如果数据库是笔记本，那么数据库名就是笔记本名。
@@ -39,3 +40,29 @@
 
 相同之处有下面几项：
 需要有一个表格，存放页码，内容。其中内容字段为markdown格式的文本。
+另外，数据库进行分组的话，不是很好处理。
+那么，先按照每个笔记本，一张表来处理吧。
+首先设计一下软件启动时，创建并尝试读取本地数据库的逻辑。
+
+~~~flow
+st=>start: 开始
+cr=>operation: 尝试创建本地数据库
+op=>operation: 尝试打开本地数据库
+cond=>condition: 已存在?
+crout=>condition: 创建出错?
+opdberr=>condition: 读取db出错?
+warning=>operation: 创建数据库报错
+dbwarning=>operation: db报错
+init=>operation: 正常初始化
+ed=>end: 结束
+opdb=>operation: 打开本地数据库
+st->op->cond
+cond(yes)->opdb->opdberr
+cond(no)->cr->crout
+crout(yes)->warning->ed
+crout(no)->op
+opdberr(yes)->dbwarning->ed
+opdberr(no)->init->ed
+
+~~~
+接下来，就可以根据这个流程，尝试编写代码了。

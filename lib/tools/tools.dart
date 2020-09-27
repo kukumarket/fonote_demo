@@ -1,6 +1,15 @@
 // import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
+
+class UidTool {
+  static final uuid = Uuid();
+  static String getuuid() {
+    String stUUid = uuid.v4().toString().toUpperCase();
+    return stUUid;
+  }
+}
 
 BottomNavigationBarItem getBottomNavigationBar(
     IconData iconData, Color color, double size, String title) {

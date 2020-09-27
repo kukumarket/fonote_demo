@@ -12,6 +12,8 @@ import 'package:fonote_demo/second_page/p3-drink.dart';
 import 'package:fonote_demo/second_page/p3-recyle.dart';
 import 'package:fonote_demo/second_page/p3-mailtous.dart';
 import 'package:fonote_demo/second_page/p3-copyright.dart';
+import 'package:fonote_demo/db/dbmanager.dart';
+import 'package:fonote_demo/tools/tools.dart';
 
 void main() {
   runApp(FooNoteApp());
@@ -92,8 +94,29 @@ class MyWelComePage extends StatelessWidget {
   MyWelComePage({Key key, this.parameter}) : super(key: key);
   final parameter;
 
+  void dbinit() async {
+    DBManager.init("fonote.db");
+    bool isTableExits = await DBManager.isTableExists("fonote.db", "使用说明");
+    if (!isTableExits) {
+      print("数据库中不存在使用说明，需要建立默认笔记本。");
+      TableFields mt = TableFields();
+      mt.addField("id", fieldtype: FieldType.key, isnotnull: true);
+      mt.addField("page", fieldtype: FieldType.integer, isnotnull: true);
+      mt.addField("topic", fieldtype: FieldType.char, isnotnull: false);
+      mt.addField("mainbody", fieldtype: FieldType.text, isnotnull: false);
+      mt.addField("crdatetime",
+          fieldtype: FieldType.timestamp, isnotnull: false);
+
+      await DBManager.createTable("fonote.db", "使用说明", mt.getList());
+    }
+    DBManager.close();
+  }
+
   @override
   Widget build(BuildContext context) {
+    dbinit();
+
+    print("uuid is " + UidTool.getuuid());
     welcomTimer = new Timer(new Duration(seconds: 5), () {
       // 只在倒计时结束时回调
       print("已到5秒,前往笔记页面. ");
