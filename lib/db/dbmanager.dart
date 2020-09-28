@@ -1,49 +1,6 @@
 // import 'dart:io';
 import 'package:sqflite/sqflite.dart';
-// CREATE TABLE student(
-//    ID INT PRIMARY KEY     NOT NULL,
-//    NAME           TEXT    NOT NULL,
-//    AGE            INT     NOT NULL,
-//    ADDRESS        CHAR(50),
-//    FEES         REAL
-// );
-// //原文出自【易百教程】，商业转载请联系作者获得授权，非商业请保留原文链接：https://www.yiibai.com/sqlite/create-table.html
-
-enum FieldType { key, text, integer, real, char, timestamp }
-
-class TableFields {
-  List<TableField> mFields = [];
-  addField(String fname,
-      {FieldType fieldtype = FieldType.char,
-      int fieldlength = 20,
-      bool isnotnull = false}) {
-    TableField mField = TableField();
-    mField.setfield(fname,
-        fieldtype: fieldtype, fieldlength: fieldlength, isnotnull: isnotnull);
-    mFields.add(mField);
-  }
-
-  List<TableField> getList() {
-    return mFields;
-  }
-}
-
-class TableField {
-  void setfield(String fname,
-      {FieldType fieldtype = FieldType.char,
-      int fieldlength = 20,
-      bool isnotnull = false}) {
-    this.fieldType = fieldtype;
-    this.fieldLength = fieldlength;
-    this.notNull = isnotnull;
-    this.fieldName = fname;
-  }
-
-  FieldType fieldType;
-  int fieldLength;
-  bool notNull;
-  String fieldName;
-}
+import 'package:fonote_demo/function/notestool.dart';
 
 class DBManager {
   static String myDBName;
@@ -129,10 +86,10 @@ class DBManager {
     return await _database.execute(sql);
   }
 
-  static getTableNamesFromDB() async {
+  static getTableNamesFromDB(String stDBName) async {
     var sql =
         "select name from sqlite_master where type = 'table' and name <> 'android_metadata'";
-    await init("fonote.db");
+    await init(stDBName);
     List<String> tableNames = [];
     List<Map> list = [];
     if (_database != null) {
@@ -140,7 +97,8 @@ class DBManager {
       int ni = 0;
       if (list.isNotEmpty) {
         list.forEach((element) {
-          tableNames.add(element.values.elementAt(ni));
+          // tableNames.add(element.values.elementAt(ni));
+          tableNames.add(element.values.elementAt(0));
           ni++;
         });
       }

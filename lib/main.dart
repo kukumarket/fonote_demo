@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:fonote_demo/function/notestool.dart';
 import 'package:fonote_demo/second_page/mynotes.dart';
 import 'package:fonote_demo/second_page/mynotecatlog.dart';
 import 'package:fonote_demo/second_page/mynoteedit.dart';
@@ -95,19 +96,11 @@ class MyWelComePage extends StatelessWidget {
   final parameter;
 
   void dbinit() async {
-    DBManager.init("fonote.db");
+    DBManager.init(noteDB);
     bool isTableExits = await DBManager.isTableExists("fonote.db", "使用说明");
     if (!isTableExits) {
       print("数据库中不存在使用说明，需要建立默认笔记本。");
-      TableFields mt = TableFields();
-      mt.addField("id", fieldtype: FieldType.key, isnotnull: true);
-      mt.addField("page", fieldtype: FieldType.integer, isnotnull: true);
-      mt.addField("topic", fieldtype: FieldType.char, isnotnull: false);
-      mt.addField("mainbody", fieldtype: FieldType.text, isnotnull: false);
-      mt.addField("crdatetime",
-          fieldtype: FieldType.timestamp, isnotnull: false);
-
-      await DBManager.createTable("fonote.db", "使用说明", mt.getList());
+      NotesTool.createNoteBook("使用说明");
     }
     DBManager.close();
   }

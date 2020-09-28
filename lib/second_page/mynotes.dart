@@ -4,10 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fonote_demo/tools/tools.dart';
 import 'package:fonote_demo/db/dbmanager.dart';
+import 'package:fonote_demo/function/notestool.dart';
 
 ////////////////////////////////
 List<String> _myNotesNamesList = [];
 bool _canOverLay = false;
+void newBook(String noteBookName) async {
+  await DBManager.init(noteDB);
+  bool isTableExits = await DBManager.isTableExists(noteDB, noteBookName);
+  if (!isTableExits) {
+    print("没有同名笔记本，允许建立笔记本 $noteBookName。");
+    await NotesTool.createNoteBook(noteBookName);
+  }
+  DBManager.close();
+}
+
 OverlayEntry _overlayEntry = OverlayEntry(
   builder: (context) {
     var screenSize = window.physicalSize; //屏幕分辨率
@@ -15,12 +26,15 @@ OverlayEntry _overlayEntry = OverlayEntry(
     print("屏幕尺寸为 $screenSize"); //输出屏幕尺寸
     print("屏幕像素密度为 $screenPixelRatio"); //输出像素密度
 
-    void _createNoteBook(String noteBookName) {
+    Future<void> _createNoteBook(String noteBookName) {
       print("尝试创建$noteBookName");
       if (noteBookName != "") {
         if (_myNotesNamesList.indexOf(noteBookName) >= 0) {
           print("已存在同名笔记本，无法继续添加");
         } else {
+          newBook(noteBookName);
+
+          //添加笔记本名到列表
           _myNotesNamesList.add(noteBookName);
           // setState(() {});
           Navigator.of(context).pushNamed('/page1');
@@ -115,7 +129,7 @@ class MyNotesAreaState extends State<MyNotesArea> {
   // }
   void getNoteNames() async {
     // DBManager.init("fonote.db");
-    _myNotesNamesList = await DBManager.getTableNamesFromDB();
+    _myNotesNamesList = await DBManager.getTableNamesFromDB(noteDB);
     DBManager.close();
   }
 
