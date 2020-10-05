@@ -3,6 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
+class GlobalValues {
+  static String currNoteBookName;
+}
+
 class UidTool {
   static final uuid = Uuid();
   static String getuuid() {

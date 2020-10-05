@@ -1,6 +1,7 @@
 // import 'dart:io';
 import 'package:sqflite/sqflite.dart';
 import 'package:fonote_demo/function/notestool.dart';
+import 'package:fonote_demo/tools/tools.dart';
 
 class DBManager {
   static String myDBName;
@@ -70,7 +71,8 @@ class DBManager {
       if (field.fieldType == FieldType.timestamp) {
         sql += " ";
         sql += field.fieldName;
-        sql += " TIMESTAMP DEFAULT CURRENT_TIMESTAMP ";
+        // sql += " TIMESTAMP DEFAULT CURRENT_TIMESTAMP ";
+        sql += " TIMESTAMP DEFAULT (datetime('now','localtime'))";
       }
 
       if (field.notNull) {
@@ -126,5 +128,35 @@ class DBManager {
       _database.close();
       _database = null;
     }
+  }
+
+  /// countPage方法用于统计数据表中记录的数量
+  /// 76
+  ///
+  static Future<int> countPage(String noteBookName) async {
+    String sql = "select count(*) from $noteBookName as xnum";
+    int mret = 0;
+    List<Map> list = [];
+    if (_database != null) {
+      list = await _database.rawQuery(sql);
+      list.forEach((element) {
+        print("countPage is ");
+        print(element.values.elementAt(0));
+      });
+    }
+  }
+
+  static Future<String> newNotePage(String noteBookName) async {
+    //--insert into '测试笔记本'(id,page,topic,mainbody)values('3671FC6A-B3C4-A0B0-825D-596FE6EBB3E8',0,'','')
+    String newGuid = "";
+    if ((_database != null) && (noteBookName != null)) {
+      newGuid = UidTool.getuuid();
+      String sql =
+          "insert into $noteBookName (id,page,topic,mainbody) values('$newGuid',0,'','') ";
+      print("newNotePage:sql = ");
+      print(sql);
+      await _database.execute(sql);
+    }
+    return newGuid;
   }
 }

@@ -9,6 +9,7 @@ import 'package:fonote_demo/function/notestool.dart';
 ////////////////////////////////
 List<String> _myNotesNamesList = [];
 bool _canOverLay = false;
+
 void newBook(String noteBookName) async {
   await DBManager.init(noteDB);
   bool isTableExits = await DBManager.isTableExists(noteDB, noteBookName);
@@ -146,6 +147,12 @@ class MyNotesAreaState extends State<MyNotesArea> {
     );
   }
 
+  // void test(String item) async {
+  //   await DBManager.init(noteDB);
+  //   await DBManager.countPage(item);
+  //   await DBManager.close();
+  // }
+
   Column _buildNoteButtonColumn(IconData iconData, String item) {
     Color color = Theme.of(context).primaryColor;
     return Column(
@@ -157,7 +164,10 @@ class MyNotesAreaState extends State<MyNotesArea> {
             icon: Icon(iconData, color: color, size: 40),
             // onPressed: callback),
             onPressed: () => {
-                  print("[$item] 按钮被按下!_canOverLay is $_canOverLay"),
+                  // test(item),
+                  GlobalValues.currNoteBookName = item,
+                  print(GlobalValues.currNoteBookName +
+                      "按钮被按下!_canOverLay is $_canOverLay"),
                   print("需要进入调用笔记流程"),
                   Navigator.of(context).pushNamed('/page2'),
                 }),

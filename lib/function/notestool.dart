@@ -48,6 +48,21 @@ class TableField {
   String fieldName;
 }
 
+/**
+ * 这是用于处理笔记本相关操作的工具类.
+ * 
+ *  * 函数1 [createNoteBook]在数据库中创建笔记本
+ *   * 参数1 [noteBookName]用户提供的笔记本名
+ * 
+ * [示例代码]
+ * ```dart
+ *  //调用createNoteBook方法以创建新的笔记本
+ *    await NotesTool.createNoteBook(noteBookName);
+ *  
+ ```
+ *  * 参数2 
+ *  */
+
 class NotesTool {
   // CreateNoteBook方法用于创建笔记本
   static createNoteBook(String noteBookName) async {
@@ -61,8 +76,21 @@ class NotesTool {
     await DBManager.createTable(noteDB, noteBookName, mt.getList());
   }
 
-  //CreatePage 方法用于在笔记本中创建页面
-  static Future<String> createPage(String noteBookName) async {}
+  ///CreatePage 方法用于在笔记本中创建页面
+  ///这个方法需要传递笔记本名作为必要参数
+  ///在本程序中，数据库名默认存放于 noteDB 变量
+  ///此方法实质是在给定数据表中插入一条记录。
+  ///此方法返回新生成的记录的主键
+  ///此主键用于识别笔记本中的单条笔记
+  ///生成新笔记的记录时，自动生成主键
+  static Future<String> createPage(String noteBookName) async {
+    int nCount = await DBManager.countPage(noteBookName);
+    print("笔记本内有$nCount 条记录");
+    String mret = await DBManager.newNotePage(noteBookName);
+    if (mret != "") {
+      print("在笔记本：$noteBookName 中添加一条新记录，标志为: $mret");
+    }
+  }
 
   //OpenPage 方法用于打开一个指定的页面
   static Future<String> openPage(String noteBookID) async {}

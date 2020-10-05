@@ -96,11 +96,11 @@ class MyWelComePage extends StatelessWidget {
   final parameter;
 
   void dbinit() async {
-    DBManager.init(noteDB);
+    await DBManager.init(noteDB);
     bool isTableExits = await DBManager.isTableExists("fonote.db", "使用说明");
     if (!isTableExits) {
       print("数据库中不存在使用说明，需要建立默认笔记本。");
-      NotesTool.createNoteBook("使用说明");
+      await NotesTool.createNoteBook("使用说明");
     }
     DBManager.close();
   }
