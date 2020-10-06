@@ -12,7 +12,7 @@ final String noteDB = "fonote.db";
 // );
 // //原文出自【易百教程】，商业转载请联系作者获得授权，非商业请保留原文链接：https://www.yiibai.com/sqlite/create-table.html
 
-enum FieldType { key, text, integer, real, char, timestamp }
+enum FieldType { key, text, integer, real, char, timestamp, timestamp_not_now }
 
 class TableFields {
   List<TableField> mFields = [];
@@ -71,7 +71,12 @@ class NotesTool {
     mt.addField("page", fieldtype: FieldType.integer, isnotnull: true);
     mt.addField("topic", fieldtype: FieldType.char, isnotnull: false);
     mt.addField("mainbody", fieldtype: FieldType.text, isnotnull: false);
-    mt.addField("crdatetime", fieldtype: FieldType.timestamp, isnotnull: false);
+    mt.addField("create_datetime",
+        fieldtype: FieldType.timestamp, isnotnull: false);
+    mt.addField("first_datetime",
+        fieldtype: FieldType.timestamp_not_now, isnotnull: false);
+    mt.addField("last_datetime",
+        fieldtype: FieldType.timestamp_not_now, isnotnull: false);
 
     await DBManager.createTable(noteDB, noteBookName, mt.getList());
   }

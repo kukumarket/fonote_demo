@@ -74,6 +74,13 @@ class DBManager {
         // sql += " TIMESTAMP DEFAULT CURRENT_TIMESTAMP ";
         sql += " TIMESTAMP DEFAULT (datetime('now','localtime'))";
       }
+      if (field.fieldType == FieldType.timestamp_not_now) {
+        sql += " ";
+        sql += field.fieldName;
+        // sql += " TIMESTAMP DEFAULT CURRENT_TIMESTAMP ";
+        //sql += " TIMESTAMP DEFAULT (datetime('now','localtime'))";
+        sql += " TIMESTAMP ";
+      }
 
       if (field.notNull) {
         sql += " NOT NULL ";
