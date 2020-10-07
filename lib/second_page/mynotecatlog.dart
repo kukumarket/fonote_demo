@@ -36,13 +36,17 @@ class MyNoteCatlogPage extends StatelessWidget {
           )
         ],
       ),
-      body: Center(
-        // child:
-        // GestureDetector(
-        // onTap: (){},
-        // child: MyNotesArea(),
-        // ),
-        child: MyNoteCatlogArea(),
+      body: DecoratedBox(
+        decoration: BoxDecoration(
+          // border: Border.all(),
+          image: DecorationImage(
+            image: AssetImage("images/bg-qianli-03.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: MyNoteCatlogArea(),
+        ),
       ),
 
       floatingActionButton: FloatingActionButton(
@@ -50,8 +54,10 @@ class MyNoteCatlogPage extends StatelessWidget {
           String bookName = GlobalValues.currNoteBookName;
           print("笔记本:$bookName 需要一个新的页面,尝试调用 getEmptyPage()获得新页面 page3");
           //addNewPage();
-          String newPageid = await getEmptyPage(bookName);
-          print("笔记本:$bookName 中的新页面为 $newPageid");
+          String newPageid = "";
+          newPageid = await getEmptyPage(bookName);
+          print("笔记本:$bookName 中的新页面id为 $newPageid");
+          GlobalValues.currNoteBookPageID = newPageid;
           Navigator.of(context).pushNamed('/page3');
         },
         tooltip: '添加新的笔记',
@@ -101,93 +107,22 @@ class MyNoteCatlogAreaState extends State<MyNoteCatlogArea> {
     return ListView(
       itemExtent: 80.0,
       children: [
-        // Container(
-        //   alignment: Alignment.center,
-        //   child:
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: TextField(
+            decoration: InputDecoration(
+              fillColor: Colors.grey.shade200,
+              filled: true,
+              suffixText: "关键字",
+              prefixIcon: Icon(Icons.search),
+            ),
+            onChanged: (searchText) {},
+          ),
+        ),
+        // ListTile(
+        //   title: Text("234234"),
         // ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset("images/line-01.png"),
-            SizedBox(width: 50), // 50宽度
-            Text(
-              "2020年09月",
-              style: TextStyle(fontSize: 22),
-            ),
-            SizedBox(width: 50), // 50宽度
-            Image.asset("images/line-01.png"),
-          ],
-        ),
-        Row(
-          children: [
-            SizedBox(width: 50), // 50宽度
-            Column(
-              children: [Text("9月21日"), Text("星期一")],
-            ),
-            SizedBox(width: 30), // 50宽度
-            Column(
-              children: [Text("今天的长城也很平静"), Text("非常平常的一天，护卫队没有什么大事。")],
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            SizedBox(width: 50), // 50宽度
-            Column(
-              children: [Text("9月21日"), Text("星期一")],
-            ),
-            SizedBox(width: 30), // 50宽度
-            Column(
-              children: [Text("再多喜欢阿离一点"), Text("可以吗？")],
-            ),
-          ],
-        ),
-        getListItem(
-            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
-        getListItem(
-            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
-        getListItem(
-            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
-        getListItem(
-            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
-        getListItem(
-            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
-        Divider(
-          height: 3,
-          color: Colors.black,
-        ),
-        getListItem(
-            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
-        getListItem(
-            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
-        getListItem(
-            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
-        getListItem(
-            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
-        getListItem(
-            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
-        getListItem(
-            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
-        getListItem(
-            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
-        getListItem(
-            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
-        getListItem(
-            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
-        getListItem(
-            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
-        getListItem(
-            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
-        getListItem(
-            '今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit),
-        getListItem('今天的长城也很平静', '非常平常的一天，护卫队没有什么大事。', Icons.print, _onnoteedit)
       ],
     );
-  }
-
-  void _onnoteedit() {
-    //该函数被调用时, 使用此函数作为参数的函数中, 应当已经做了处理
-    //比如确认是哪个按钮被按下flu
-    // setState((){});
   }
 }

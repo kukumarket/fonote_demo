@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:fonote_demo/tools/tools.dart';
+import 'package:fonote_demo/db/dbmanager.dart';
 
 class MyNoteEditPage extends StatelessWidget {
   // Default placeholder text
@@ -16,11 +17,27 @@ class MyNoteEditPage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: Icon(IconData(0xe603, fontFamily: 'NoteIcons'), size: 32),
-            onPressed: () {},
+            onPressed: () {
+              print("取消本次编辑，不存盘并返回笔记本封面。");
+              Navigator.of(context).pushNamed('/page1');
+            },
           ),
           IconButton(
             icon: Icon(IconData(0xe662, fontFamily: 'NoteIcons'), size: 32),
-            onPressed: () {},
+            onPressed: () {
+              print("本次编辑需保存，存盘并返回笔记本封面。");
+              print("当前笔记本为 " + GlobalValues.currNoteBookName);
+              print("当前页面id为 " + GlobalValues.currNoteBookPageID);
+              print("当前页面标题为 ");
+              print(GlobalValues.currNoteBookTitle);
+              print("当前页面正文为 ");
+              print(GlobalValues.currNoteBookMemo);
+              updataPage(
+                  GlobalValues.currNoteBookName,
+                  GlobalValues.currNoteBookPageID,
+                  GlobalValues.currNoteBookTitle,
+                  GlobalValues.currNoteBookMemo);
+            },
           )
         ],
       ),
@@ -71,13 +88,46 @@ class MyNoteEditArea extends StatefulWidget {
 class MyNoteEditState extends State<MyNoteEditArea> {
   @override
   Widget build(BuildContext context) {
+    final TextEditingController titleController = TextEditingController();
+    final TextEditingController noteController = TextEditingController();
     return Column(
       children: [
-        TextField(),
-        Expanded(
-          // padding: EdgeInsets.all(8.0),
+        Padding(
+          padding: const EdgeInsets.all(20),
           child: TextField(
-            maxLines: 36,
+            controller: titleController,
+            decoration: InputDecoration(
+              fillColor: Colors.grey.shade200,
+              filled: true,
+              suffixText: "标题",
+              prefixIcon: Icon(Icons.title),
+            ),
+            onChanged: (titleText) {
+              print("标题更新为: ");
+              print(titleText);
+              GlobalValues.currNoteBookTitle = titleText;
+            },
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: TextField(
+              controller: noteController,
+              maxLines: 36,
+              decoration: InputDecoration(
+                  fillColor: Colors.grey.shade200,
+                  filled: true,
+                  // helperText: "标题",
+                  // prefixIcon: Icon(Icons.title),
+                  suffixText: "正文"),
+              onChanged: (commtext) {
+                print("正文更新为:");
+                // print(commtext);
+                print(noteController.text);
+                GlobalValues.currNoteBookMemo = commtext;
+              },
+            ),
           ),
         ),
       ],

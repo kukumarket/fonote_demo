@@ -197,10 +197,52 @@ class DBManager {
           "insert into $noteBookName (id,page,topic,mainbody) values('$newGuid',$pageNum,'','') ";
       print("newNotePage:sql = $sql");
       // await _database.execute(sql);
+      // 用 rawInsert取代了execute
       await _database.rawInsert(sql);
     }
     print("buildNotePages() <-");
     return newGuid;
+  }
+
+  static Future<String> updataNotePage(String noteBookName, String notePageID,
+      String pageTitle, String pageMemo) async {
+    print("updataNotePage() ->");
+    String newGuid = "";
+
+    if ((_database != null) && (noteBookName != null)) {
+      newGuid = notePageID;
+      String sql =
+          "UPDATE $noteBookName SET topic = ? , mainbody = ? WHERE id = '$notePageID' ";
+      print("updataNotePage:sql = $sql");
+      await _database.rawUpdate(sql, [pageTitle, pageMemo]);
+      //接下来需要更新时间字段
+      bool checkFirstTime = await _firstTimeisNull(noteBookName, notePageID);
+      if (checkFirstTime) {
+        //如果第一次更新时间为空
+        //则更新第一次更新时间和最后一次更新时间为系统时间
+        sql =
+            "UPDATE $noteBookName SET first_datetime = ? , last_datetime = ? WHERE id = '$notePageID' ";
+        print("updataNotePage:sql = $sql");
+        await _database.rawUpdate(
+            sql, [DateTime.now().toString(), DateTime.now().toString()]);
+      } else {
+        //如果第一次更新时间不为空
+        //则更新最后一次更新时间为系统时间
+        sql =
+            "UPDATE $noteBookName SET last_datetime = ? WHERE id = '$notePageID' ";
+        print("updataNotePage:sql = $sql");
+
+        await _database.rawUpdate(sql, [DateTime.now().toString()]);
+      }
+    }
+    print("updataNotePage() <-");
+    return newGuid;
+  }
+
+  static Future<bool> _firstTimeisNull(
+      String noteBookName, String notePageID) async {
+    String emptyPageID = await getFirstEmptyPage(noteBookName);
+    return emptyPageID == notePageID ? true : false;
   }
 }
 
@@ -209,6 +251,16 @@ Future<String> getEmptyPage(String noteBookName) async {
   String pageID = "";
   await DBManager.init(GlobalDefines.noteDB);
   pageID = await DBManager.getFirstEmptyPage(noteBookName);
+  await DBManager.close();
+  return pageID;
+}
+
+Future<String> updataPage(String noteBookName, String notePageID,
+    String pageTitle, String pageMemo) async {
+  String pageID = "";
+  await DBManager.init(GlobalDefines.noteDB);
+  pageID = await DBManager.updataNotePage(
+      noteBookName, notePageID, pageTitle, pageMemo);
   await DBManager.close();
   return pageID;
 }

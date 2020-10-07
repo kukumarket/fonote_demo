@@ -15,4 +15,5 @@
     // -t html5(转换为 HTML5 格式)
     // --css=css/style.css(在生成的 HTML 文件中包含指向 css/style.css 文件的链接。
     "pandoc.htmlOptString": "-s -f gfm -t html5 --css=css/style.css"
+    
 }

@@ -5,6 +5,9 @@ import 'package:uuid/uuid.dart';
 
 class GlobalValues {
   static String currNoteBookName;
+  static String currNoteBookPageID;
+  static String currNoteBookTitle;
+  static String currNoteBookMemo;
 }
 
 class GlobalDefines {
