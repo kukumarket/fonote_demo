@@ -7,6 +7,10 @@ class GlobalValues {
   static String currNoteBookName;
 }
 
+class GlobalDefines {
+  static final String noteDB = "fonote.db";
+}
+
 class UidTool {
   static final uuid = Uuid();
   static String getuuid() {

@@ -11,8 +11,9 @@ List<String> _myNotesNamesList = [];
 bool _canOverLay = false;
 
 void newBook(String noteBookName) async {
-  await DBManager.init(noteDB);
-  bool isTableExits = await DBManager.isTableExists(noteDB, noteBookName);
+  await DBManager.init(GlobalDefines.noteDB);
+  bool isTableExits =
+      await DBManager.isTableExists(GlobalDefines.noteDB, noteBookName);
   if (!isTableExits) {
     print("没有同名笔记本，允许建立笔记本 $noteBookName。");
     await NotesTool.createNoteBook(noteBookName);
@@ -27,7 +28,7 @@ OverlayEntry _overlayEntry = OverlayEntry(
     print("屏幕尺寸为 $screenSize"); //输出屏幕尺寸
     print("屏幕像素密度为 $screenPixelRatio"); //输出像素密度
 
-    Future<void> _createNoteBook(String noteBookName) {
+    void _createNoteBook(String noteBookName) {
       print("尝试创建$noteBookName");
       if (noteBookName != "") {
         if (_myNotesNamesList.indexOf(noteBookName) >= 0) {
@@ -130,7 +131,8 @@ class MyNotesAreaState extends State<MyNotesArea> {
   // }
   void getNoteNames() async {
     // DBManager.init("fonote.db");
-    _myNotesNamesList = await DBManager.getTableNamesFromDB(noteDB);
+    _myNotesNamesList =
+        await DBManager.getTableNamesFromDB(GlobalDefines.noteDB);
     DBManager.close();
   }
 

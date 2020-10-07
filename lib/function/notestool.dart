@@ -1,8 +1,8 @@
 // 此文件用于处理笔记文档相关的功能。
 // 此文件调用dbmanager中的函数来实现相关功能。
 import 'package:fonote_demo/db/dbmanager.dart';
+import 'package:fonote_demo/tools/tools.dart';
 
-final String noteDB = "fonote.db";
 // CREATE TABLE student(
 //    ID INT PRIMARY KEY     NOT NULL,
 //    NAME           TEXT    NOT NULL,
@@ -78,7 +78,16 @@ class NotesTool {
     mt.addField("last_datetime",
         fieldtype: FieldType.timestamp_not_now, isnotnull: false);
 
-    await DBManager.createTable(noteDB, noteBookName, mt.getList());
+    await DBManager.createTable(
+        GlobalDefines.noteDB, noteBookName, mt.getList());
+    for (var i = 1; i <= 100; i++) {
+      await DBManager.buildNotePages(noteBookName, i);
+    }
+    // await DBManager.buildNotePages(noteBookName, 1);
+    // await DBManager.buildNotePages(noteBookName, 2);
+    // await DBManager.buildNotePages(noteBookName, 3);
+    // await DBManager.buildNotePages(noteBookName, 4);
+    // await DBManager.buildNotePages(noteBookName, 5);
   }
 
   ///CreatePage 方法用于在笔记本中创建页面
@@ -89,20 +98,25 @@ class NotesTool {
   ///此主键用于识别笔记本中的单条笔记
   ///生成新笔记的记录时，自动生成主键
   static Future<String> createPage(String noteBookName) async {
-    int nCount = await DBManager.countPage(noteBookName);
-    print("笔记本内有$nCount 条记录");
-    String mret = await DBManager.newNotePage(noteBookName);
+    String mret = await DBManager.getFirstEmptyPage(noteBookName);
     if (mret != "") {
-      print("在笔记本：$noteBookName 中添加一条新记录，标志为: $mret");
+      print("在笔记本：$noteBookName 中查找第一个可用页面。其标志为: $mret");
     }
+    return mret;
   }
 
   //OpenPage 方法用于打开一个指定的页面
-  static Future<String> openPage(String noteBookID) async {}
+  static Future<String> openPage(String noteBookID) async {
+    return "";
+  }
 
   //GetNoteBooks()方法用于返回一个List<String>类型的笔记本列表
-  static Future<List<String>> getNoteBooks() async {}
+  static Future<List<String>> getNoteBooks() async {
+    return [];
+  }
 
   //GetPages()方法用于返回一个List<NotePage>类型的页面列表
-  static Future<List<String>> getPages() async {}
+  static Future<List<String>> getPages() async {
+    return [];
+  }
 }

@@ -2,22 +2,22 @@
 
 import 'package:flutter/material.dart';
 import 'package:fonote_demo/db/dbmanager.dart';
-import 'package:fonote_demo/function/notestool.dart';
+// import 'package:fonote_demo/function/notestool.dart';
 // import 'package:flutter/rendering.dart';
 import 'package:fonote_demo/tools/tools.dart';
 
 class MyNoteCatlogPage extends StatelessWidget {
   // Default placeholder text
   // ScrollController _controller = new ScrollController(); // 定义用于笔记本列表的滚动控制器
-  void addNewPage() async {
-    String mNoteBookName = GlobalValues.currNoteBookName;
-    print("addNewPage() 尝试为笔记本$mNoteBookName 添加页面．");
-    await DBManager.init(noteDB);
-    String newPageID =
-        await DBManager.newNotePage(GlobalValues.currNoteBookName);
-    print("newPageID =  " + newPageID);
-    await DBManager.close();
-  }
+  // void addNewPage() async {
+  //   String mNoteBookName = GlobalValues.currNoteBookName;
+  //   print("addNewPage() 尝试为笔记本$mNoteBookName 添加页面．");
+  //   await DBManager.init(noteDB);
+  //   String newPageID =
+  //       await DBManager.newNotePage(GlobalValues.currNoteBookName);
+  //   print("newPageID =  " + newPageID);
+  //   await DBManager.close();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +46,12 @@ class MyNoteCatlogPage extends StatelessWidget {
       ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
           String bookName = GlobalValues.currNoteBookName;
-          print("笔记本:$bookName 需要添加新的笔记内容。尝试跳转到页面 page3");
-          addNewPage();
+          print("笔记本:$bookName 需要一个新的页面,尝试调用 getEmptyPage()获得新页面 page3");
+          //addNewPage();
+          String newPageid = await getEmptyPage(bookName);
+          print("笔记本:$bookName 中的新页面为 $newPageid");
           Navigator.of(context).pushNamed('/page3');
         },
         tooltip: '添加新的笔记',

@@ -103,12 +103,12 @@ class DBManager {
     List<Map> list = [];
     if (_database != null) {
       list = await _database.rawQuery(sql);
-      int ni = 0;
+      // int ni = 0;
       if (list.isNotEmpty) {
         list.forEach((element) {
           // tableNames.add(element.values.elementAt(ni));
           tableNames.add(element.values.elementAt(0));
-          ni++;
+          // ni++;
         });
       }
     }
@@ -138,32 +138,77 @@ class DBManager {
   }
 
   /// countPage方法用于统计数据表中记录的数量
-  /// 76
   ///
-  static Future<int> countPage(String noteBookName) async {
-    String sql = "select count(*) from $noteBookName as xnum";
-    int mret = 0;
-    List<Map> list = [];
-    if (_database != null) {
-      list = await _database.rawQuery(sql);
-      list.forEach((element) {
-        print("countPage is ");
-        print(element.values.elementAt(0));
-      });
-    }
-  }
-
-  static Future<String> newNotePage(String noteBookName) async {
-    //--insert into '测试笔记本'(id,page,topic,mainbody)values('3671FC6A-B3C4-A0B0-825D-596FE6EBB3E8',0,'','')
+  // static Future<int> countPage(String noteBookName) async {
+  //   String sql = "select count(*) from $noteBookName as xnum";
+  //   int mret = 0;
+  //   List<Map> list = [];
+  //   if (_database != null) {
+  //     list = await _database.rawQuery(sql);
+  //     list.forEach((element) {
+  //       print("countPage is ");
+  //       print(element.values.elementAt(0));
+  //       mret = element.values.elementAt(0);
+  //     });
+  //   }
+  //   return mret;
+  // }
+  static Future<String> getFirstEmptyPage(String noteBookName) async {
     String newGuid = "";
+    List<Map> mQuery = [];
     if ((_database != null) && (noteBookName != null)) {
-      newGuid = UidTool.getuuid();
       String sql =
-          "insert into $noteBookName (id,page,topic,mainbody) values('$newGuid',0,'','') ";
-      print("newNotePage:sql = ");
+          "select * from $noteBookName where first_datetime isnull order by create_datetime limit 0,1";
+      print("Show getFirstEmptyPage sql :");
       print(sql);
-      await _database.execute(sql);
+      mQuery = await _database.rawQuery(sql);
+      print("Data in mQuery is :");
+      print(mQuery);
+      Map mt = new Map();
+      mt = mQuery[0];
+      print("Data id is : " + mt['id']);
+      newGuid = mt["id"];
     }
     return newGuid;
   }
+  // static Future<String> newNotePage(String noteBookName) async {
+  //   //--insert into '测试笔记本'(id,page,topic,mainbody)values('3671FC6A-B3C4-A0B0-825D-596FE6EBB3E8',0,'','')
+  //   String newGuid = "";
+  //   if ((_database != null) && (noteBookName != null)) {
+  //     newGuid = UidTool.getuuid();
+  //     String sql =
+  //         "insert into $noteBookName (id,page,topic,mainbody) values('$newGuid',0,'','') ";
+  //     print("newNotePage:sql = ");
+  //     print(sql);
+  //     await _database.execute(sql);
+  //   }
+  //   return newGuid;
+  // }
+
+  static Future<String> buildNotePages(String noteBookName, int pageNum) async {
+    //--insert into '测试笔记本'(id,page,topic,mainbody)values('3671FC6A-B3C4-A0B0-825D-596FE6EBB3E8',0,'','')
+    print("buildNotePages() ->");
+    String newGuid = "";
+    await init(GlobalDefines.noteDB);
+
+    if ((_database != null) && (noteBookName != null)) {
+      newGuid = UidTool.getuuid();
+      String sql =
+          "insert into $noteBookName (id,page,topic,mainbody) values('$newGuid',$pageNum,'','') ";
+      print("newNotePage:sql = $sql");
+      // await _database.execute(sql);
+      await _database.rawInsert(sql);
+    }
+    print("buildNotePages() <-");
+    return newGuid;
+  }
+}
+
+//下面是开放给用户调用的函数
+Future<String> getEmptyPage(String noteBookName) async {
+  String pageID = "";
+  await DBManager.init(GlobalDefines.noteDB);
+  pageID = await DBManager.getFirstEmptyPage(noteBookName);
+  await DBManager.close();
+  return pageID;
 }
