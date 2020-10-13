@@ -42,14 +42,6 @@ class MyNoteEditPage extends StatelessWidget {
         ],
       ),
       body: MyNoteEditArea(),
-      // body: Container(
-      //   // child:
-      //   // GestureDetector(
-      //   // onTap: (){},
-      //   // child: MyNotesArea(),
-      //   // ),
-      //   child: (),
-      // ),
 
       // floatingActionButton: FloatingActionButton(
       //   onPressed: () {

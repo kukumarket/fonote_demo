@@ -8,6 +8,9 @@ class GlobalValues {
   static String currNoteBookPageID;
   static String currNoteBookTitle;
   static String currNoteBookMemo;
+  static double screenWidth;
+  static double screenHeight;
+  static double screenPixelRatio;
 }
 
 class GlobalDefines {
@@ -150,7 +153,8 @@ List<BottomNavigationBarItem> getBottomNavigation() {
     getBottomNavigationBar(Icons.print, Colors.blue, 30, "个人笔记"),
     getBottomNavigationBar(Icons.print, Colors.blue, 30, "笔记广场"),
     getBottomNavigationBar(Icons.print, Colors.blue, 30, "千里官宣"),
-    getBottomNavigationBar(Icons.print, Colors.blue, 30, "我的")
+    getBottomNavigationBar(Icons.print, Colors.blue, 30, "我的"),
+    getBottomNavigationBar(Icons.print, Colors.blue, 30, "测试页")
   ];
   return mBottomNavigationList;
 }
@@ -167,6 +171,8 @@ BottomNavigationBar getBottomToolBar(BuildContext context) {
         Navigator.of(context).pushNamed('/page5');
       } else if (value == 3) {
         Navigator.of(context).pushNamed('/page6');
+      } else if (value == 4) {
+        Navigator.of(context).pushNamed('/page13');
       }
     },
     items: getBottomNavigation(),

@@ -25,6 +25,7 @@ OverlayEntry _overlayEntry = OverlayEntry(
   builder: (context) {
     var screenSize = window.physicalSize; //屏幕分辨率
     var screenPixelRatio = MediaQuery.of(context).devicePixelRatio;
+    GlobalValues.screenPixelRatio = screenPixelRatio;
     print("屏幕尺寸为 $screenSize"); //输出屏幕尺寸
     print("屏幕像素密度为 $screenPixelRatio"); //输出像素密度
 

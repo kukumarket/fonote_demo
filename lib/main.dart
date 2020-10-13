@@ -13,6 +13,7 @@ import 'package:fonote_demo/second_page/p3-drink.dart';
 import 'package:fonote_demo/second_page/p3-recyle.dart';
 import 'package:fonote_demo/second_page/p3-mailtous.dart';
 import 'package:fonote_demo/second_page/p3-copyright.dart';
+import 'package:fonote_demo/second_page/testpage.dart';
 import 'package:fonote_demo/db/dbmanager.dart';
 import 'package:fonote_demo/tools/tools.dart';
 
@@ -80,6 +81,8 @@ class FooNoteApp extends StatelessWidget {
 
         //我的信息-子页面-6
         '/page12': (BuildContext context) => new CopyRightPage(),
+        //测试页面
+        '/page13': (BuildContext context) => new MyTestPage(),
       },
     );
   }

@@ -24,7 +24,7 @@ class MyNoteCatlogPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: Icon(IconData(0xe632, fontFamily: 'NoteIcons'), size: 32),
-        title: Text("我的笔记本"),
+        title: Text(GlobalValues.currNoteBookName),
         actions: <Widget>[
           IconButton(
             icon: Icon(IconData(0xe7b6, fontFamily: 'NoteIcons'), size: 32),
@@ -93,19 +93,8 @@ class MyNoteCatlogArea extends StatefulWidget {
 class MyNoteCatlogAreaState extends State<MyNoteCatlogArea> {
   @override
   Widget build(BuildContext context) {
-    return _getNoteCatlogList();
-    // return Column(
-    //   children: [
-    //     // getMyNoteTitleImage(),
-    //     // getTextField("请输入笔记本名或者它的一部分。", "查找笔记本", _findNoteBook),
-    //     // getNoteBookGrid(),
-    //   ],
-    // );
-  }
-
-  ListView _getNoteCatlogList() {
-    return ListView(
-      itemExtent: 80.0,
+    //return _getNoteCatlogList();
+    return Column(
       children: [
         Padding(
           padding: const EdgeInsets.all(20),
@@ -113,12 +102,42 @@ class MyNoteCatlogAreaState extends State<MyNoteCatlogArea> {
             decoration: InputDecoration(
               fillColor: Colors.grey.shade200,
               filled: true,
-              suffixText: "关键字",
+              suffixText: "日志内容",
               prefixIcon: Icon(Icons.search),
             ),
             onChanged: (searchText) {},
           ),
         ),
+        //_getNoteCatlogList(),
+        Expanded(
+            child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: ListView(
+            itemExtent: 200.0,
+            children: _getTestList(),
+          ),
+        )),
+      ],
+    );
+  }
+
+  List<Widget> _getTestList() {
+    List<Widget> mList = [];
+    for (int ni = 0; ni < 6; ni++) {
+      mList.add(Card(
+        elevation: 20.0,
+      ));
+    }
+    return mList;
+  }
+
+  ListView _getNoteCatlogList() {
+    return ListView(
+      children: [
+        Card(
+          elevation: 20.0,
+        ),
+
         // ListTile(
         //   title: Text("234234"),
         // ),
