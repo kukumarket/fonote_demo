@@ -108,10 +108,18 @@ class MyWelComePage extends StatelessWidget {
     DBManager.close();
   }
 
+  void getNoteNames() async {
+    // DBManager.init("fonote.db");
+    myNotesNamesList =
+        await DBManager.getTableNamesFromDB(GlobalDefines.noteDB);
+    DBManager.close();
+  }
+
   @override
   Widget build(BuildContext context) {
     dbinit();
 
+    getNoteNames();
     print("uuid is " + UidTool.getuuid());
 
     welcomTimer = new Timer(new Duration(seconds: 5), () {

@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
+List<String> myNotesNamesList = [];
+
 class GlobalValues {
   static String currNoteBookName;
   static String currNoteBookPageID;

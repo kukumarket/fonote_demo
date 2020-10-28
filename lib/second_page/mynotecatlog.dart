@@ -124,24 +124,22 @@ class MyNoteCatlogAreaState extends State<MyNoteCatlogArea> {
   List<Widget> _getTestList() {
     List<Widget> mList = [];
     for (int ni = 0; ni < 6; ni++) {
-      mList.add(Card(
-        elevation: 20.0,
-      ));
+      mList.add(Container(child: Text("xxa")));
     }
     return mList;
   }
 
-  ListView _getNoteCatlogList() {
-    return ListView(
-      children: [
-        Card(
-          elevation: 20.0,
-        ),
+  // ListView _getNoteCatlogList() {
+  //   return ListView(
+  //     children: [
+  //       Card(
+  //         elevation: 20.0,
+  //       ),
 
-        // ListTile(
-        //   title: Text("234234"),
-        // ),
-      ],
-    );
-  }
+  //       // ListTile(
+  //       //   title: Text("234234"),
+  //       // ),
+  //     ],
+  //   );
+  // }
 }

@@ -7,7 +7,7 @@ import 'package:fonote_demo/db/dbmanager.dart';
 import 'package:fonote_demo/function/notestool.dart';
 
 ////////////////////////////////
-List<String> _myNotesNamesList = [];
+
 bool _canOverLay = false;
 
 void newBook(String noteBookName) async {
@@ -32,13 +32,13 @@ OverlayEntry _overlayEntry = OverlayEntry(
     void _createNoteBook(String noteBookName) {
       print("尝试创建$noteBookName");
       if (noteBookName != "") {
-        if (_myNotesNamesList.indexOf(noteBookName) >= 0) {
+        if (myNotesNamesList.indexOf(noteBookName) >= 0) {
           print("已存在同名笔记本，无法继续添加");
         } else {
           newBook(noteBookName);
 
           //添加笔记本名到列表
-          _myNotesNamesList.add(noteBookName);
+          myNotesNamesList.add(noteBookName);
           // setState(() {});
           Navigator.of(context).pushNamed('/page1');
           // _setNoteBookState();
@@ -105,6 +105,7 @@ class MyNotePage extends StatelessWidget {
             size: 40,
           ),
         ),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         // This trailing comma makes auto-formatting nicer for build methods.
         bottomNavigationBar: getBottomToolBar(context));
   }
@@ -130,16 +131,10 @@ class MyNotesAreaState extends State<MyNotesArea> {
   // void _setNoteBookState() {
   //   setState(() {});
   // }
-  void getNoteNames() async {
-    // DBManager.init("fonote.db");
-    _myNotesNamesList =
-        await DBManager.getTableNamesFromDB(GlobalDefines.noteDB);
-    DBManager.close();
-  }
 
   @override
   Widget build(BuildContext context) {
-    getNoteNames();
+    //getNoteNames();
     return Column(
       children: [
         getMyNoteTitleImage(),
@@ -191,7 +186,7 @@ class MyNotesAreaState extends State<MyNotesArea> {
 
   //返回笔记本列表
   List<Widget> _getNoteBooksList() {
-    return _myNotesNamesList.map((item) {
+    return myNotesNamesList.map((item) {
       print(item);
 
       if (item == "添加笔记本") {
