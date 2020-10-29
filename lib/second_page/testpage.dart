@@ -115,7 +115,7 @@ class MyTestAreaState extends State<MyTestArea> {
 
   List<Widget> _getTestList() {
     List<Widget> mList = [];
-    for (int ni = 0; ni < 10; ni++) {
+    for (int ni = 0; ni < 100; ni++) {
       mList.add(_getTopicCard(ni + 1));
     }
     return mList;
@@ -130,9 +130,18 @@ class MyTestAreaState extends State<MyTestArea> {
             flex: 3,
             child: Container(
               alignment: Alignment.center,
-              color: Colors.blueAccent[100],
+              // color: Colors.blueAccent[100],
               padding: EdgeInsets.all(itemEdgeInset),
               margin: EdgeInsets.all(itemEdgeInset),
+              //边框设置
+              decoration: BoxDecoration(
+                //背景
+                color: Colors.blue[100],
+                //设置四周圆角 角度
+                borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                //设置四周边框
+                border: new Border.all(width: 1, color: Colors.red),
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -153,12 +162,20 @@ class MyTestAreaState extends State<MyTestArea> {
               flex: 7,
               child: Container(
                 alignment: Alignment.center,
-                color: Colors.greenAccent[100],
                 padding: EdgeInsets.all(itemEdgeInset),
                 margin: EdgeInsets.only(
                     top: itemEdgeInset,
                     right: itemEdgeInset,
                     bottom: itemEdgeInset),
+                //边框设置
+                decoration: BoxDecoration(
+                  //背景
+                  color: Colors.green[200],
+                  //设置四周圆角 角度
+                  borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                  //设置四周边框
+                  border: new Border.all(width: 1, color: Colors.red),
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
