@@ -105,7 +105,7 @@ class MyTestAreaState extends State<MyTestArea> {
             child: Container(
           padding: const EdgeInsets.all(20),
           child: ListView(
-            itemExtent: 80,
+            itemExtent: 100,
             children: _getTestList(),
           ),
         )),
@@ -115,7 +115,7 @@ class MyTestAreaState extends State<MyTestArea> {
 
   List<Widget> _getTestList() {
     List<Widget> mList = [];
-    for (int ni = 0; ni < 100; ni++) {
+    for (int ni = 0; ni < 15; ni++) {
       mList.add(_getTopicCard(ni + 1));
     }
     return mList;
@@ -123,54 +123,25 @@ class MyTestAreaState extends State<MyTestArea> {
 
   Widget _getTopicCard(int page) {
     double itemEdgeInset = 4.0;
-    return Container(
-      child: Row(
-        children: [
-          Expanded(
-            flex: 3,
-            child: Container(
-              alignment: Alignment.center,
-              // color: Colors.blueAccent[100],
-              padding: EdgeInsets.all(itemEdgeInset),
-              margin: EdgeInsets.all(itemEdgeInset),
-              //边框设置
-              decoration: BoxDecoration(
-                //背景
-                color: Colors.blue[100],
-                //设置四周圆角 角度
-                borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                //设置四周边框
-                border: new Border.all(width: 1, color: Colors.red),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    child: Text("2020年10月28日"),
-                  ),
-                  Container(
-                    child: Text("星期三"),
-                  ),
-                  Container(
-                    child: Text("第$page/100页"),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Expanded(
-              flex: 7,
+    return GestureDetector(
+      onTap: () {
+        print("页面索引<$page>被选择！");
+        print("需要跳转到对应的编辑页面！");
+      },
+      child: Container(
+        child: Row(
+          children: [
+            Expanded(
+              flex: 35,
               child: Container(
                 alignment: Alignment.center,
+                // color: Colors.blueAccent[100],
                 padding: EdgeInsets.all(itemEdgeInset),
-                margin: EdgeInsets.only(
-                    top: itemEdgeInset,
-                    right: itemEdgeInset,
-                    bottom: itemEdgeInset),
+                margin: EdgeInsets.all(itemEdgeInset),
                 //边框设置
                 decoration: BoxDecoration(
                   //背景
-                  color: Colors.green[200],
+                  color: Colors.blue[100],
                   //设置四周圆角 角度
                   borderRadius: BorderRadius.all(Radius.circular(4.0)),
                   //设置四周边框
@@ -180,15 +151,55 @@ class MyTestAreaState extends State<MyTestArea> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      child: Text("第一章 离开即是永别"),
+                      margin: EdgeInsets.all(2.0),
+                      child: Text("2020年10月28日"),
                     ),
                     Container(
-                      child: Text("茫茫星海，人类是否是唯一智慧？"),
+                      margin: EdgeInsets.all(2.0),
+                      child: Text("星期三"),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(2.0),
+                      child: Text("第$page/100页"),
                     ),
                   ],
                 ),
-              )),
-        ],
+              ),
+            ),
+            Expanded(
+                flex: 65,
+                child: Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.all(itemEdgeInset),
+                  margin: EdgeInsets.only(
+                      top: itemEdgeInset,
+                      right: itemEdgeInset,
+                      bottom: itemEdgeInset),
+                  //边框设置
+                  decoration: BoxDecoration(
+                    //背景
+                    color: Colors.green[200],
+                    //设置四周圆角 角度
+                    borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                    //设置四周边框
+                    border: new Border.all(width: 1, color: Colors.red),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.all(2.0),
+                        child: Text("第一章 离开即是永别"),
+                      ),
+                      Container(
+                        margin: EdgeInsets.all(2.0),
+                        child: Text("茫茫星海，人类是否是唯一智慧？"),
+                      ),
+                    ],
+                  ),
+                )),
+          ],
+        ),
       ),
     );
   }
