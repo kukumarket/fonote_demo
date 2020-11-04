@@ -5,6 +5,7 @@ import 'package:fonote_demo/db/dbmanager.dart';
 // import 'package:fonote_demo/function/notestool.dart';
 // import 'package:flutter/rendering.dart';
 import 'package:fonote_demo/tools/tools.dart';
+import 'package:fonote_demo/compentlib/cl-001.dart';
 
 double noteCatlogItemHeight = 150;
 
@@ -92,9 +93,9 @@ class MyTestAreaState extends State<MyTestArea> {
           padding: const EdgeInsets.all(20),
           child: TextField(
             decoration: InputDecoration(
-              fillColor: Colors.grey.shade200,
+              fillColor: Color.fromARGB(150, 0xba, 0xca, 0xc6),
               filled: true,
-              suffixText: "日志内容",
+              suffixText: "内容检索",
               prefixIcon: Icon(Icons.search),
             ),
             onChanged: (searchText) {},
@@ -123,84 +124,14 @@ class MyTestAreaState extends State<MyTestArea> {
 
   Widget _getTopicCard(int page) {
     double itemEdgeInset = 4.0;
+    CompentLibOutNoteTitle compentLibOutNoteTitle = CompentLibOutNoteTitle();
     return GestureDetector(
       onTap: () {
         print("页面索引<$page>被选择！");
         print("需要跳转到对应的编辑页面！");
       },
-      child: Container(
-        child: Row(
-          children: [
-            Expanded(
-              flex: 35,
-              child: Container(
-                alignment: Alignment.center,
-                // color: Colors.blueAccent[100],
-                padding: EdgeInsets.all(itemEdgeInset),
-                margin: EdgeInsets.all(itemEdgeInset),
-                //边框设置
-                decoration: BoxDecoration(
-                  //背景
-                  color: Colors.blue[100],
-                  //设置四周圆角 角度
-                  borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                  //设置四周边框
-                  border: new Border.all(width: 1, color: Colors.red),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.all(2.0),
-                      child: Text("2020年10月28日"),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(2.0),
-                      child: Text("星期三"),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(2.0),
-                      child: Text("第$page/100页"),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-                flex: 65,
-                child: Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.all(itemEdgeInset),
-                  margin: EdgeInsets.only(
-                      top: itemEdgeInset,
-                      right: itemEdgeInset,
-                      bottom: itemEdgeInset),
-                  //边框设置
-                  decoration: BoxDecoration(
-                    //背景
-                    color: Colors.green[200],
-                    //设置四周圆角 角度
-                    borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                    //设置四周边框
-                    border: new Border.all(width: 1, color: Colors.red),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.all(2.0),
-                        child: Text("第一章 离开即是永别"),
-                      ),
-                      Container(
-                        margin: EdgeInsets.all(2.0),
-                        child: Text("茫茫星海，人类是否是唯一智慧？"),
-                      ),
-                    ],
-                  ),
-                )),
-          ],
-        ),
-      ),
+      child: compentLibOutNoteTitle.getWidget(itemEdgeInset, page,
+          "2020年11月04日", "星期三", "第一章 离开即是永别", "茫茫星海，人类是否是唯一智慧？"),
     );
   }
 }
