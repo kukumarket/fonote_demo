@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fonote_demo/tools/tools.dart';
-
+import 'package:fonote_demo/compentlib/compentlib-001.dart';
 ////////////////////////////////
 ///
 ///
@@ -55,10 +55,15 @@ class MyNoteSquareArea extends StatefulWidget {
 }
 
 class MyNoteSquareAreaState extends State<MyNoteSquareArea> {
+  WidgetLibLevel001TitleImage widgetLibLevel001TitleImage =
+      new WidgetLibLevel001TitleImage();
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [getMyNoteTitleImage(), Expanded(child: _getPublicNoteList())],
+      children: [
+        widgetLibLevel001TitleImage.getWidget(),
+        Expanded(child: _getPublicNoteList())
+      ],
     );
   }
 

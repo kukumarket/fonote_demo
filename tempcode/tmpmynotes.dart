@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:fonote_demo/compentlib/compentlib-001.dart';
 import 'package:fonote_demo/tools/tools.dart';
 
 ////////////////////////////////
@@ -74,6 +75,8 @@ class MyNotesAreaState extends State<MyNotesArea> {
         _overlayEntry.remove();
       }
 
+      WidgetLibLevel001SearchTextField widgetLibLevel001SearchTextField =
+          new WidgetLibLevel001SearchTextField();
       return
 // new Positioned(
 // //	 top: MediaQuery.of(context).size.height * 0.8,
@@ -89,7 +92,9 @@ class MyNotesAreaState extends State<MyNotesArea> {
                 padding: EdgeInsets.all(8),
                 child: new Column(
                   children: [
-                    getTextField("请在这里输入新笔记本的名字。", "创建笔记本", _createNoteBook),
+                    // getTextField("请在这里输入新笔记本的名字。", "创建笔记本", _createNoteBook),
+                    widgetLibLevel001SearchTextField.getWidget(
+                        "请在这里输入新笔记本的名字。", "创建笔记本", _createNoteBook, 10),
                     getMyNoteColorPanel(context),
                   ],
                 ),
@@ -111,13 +116,19 @@ class MyNotesAreaState extends State<MyNotesArea> {
   // void _setNoteBookState() {
   //   setState(() {});
   // }
+  WidgetLibLevel001SearchTextField widgetLibLevel001SearchTextField =
+      new WidgetLibLevel001SearchTextField();
 
+  WidgetLibLevel001TitleImage widgetLibLevel001TitleImage =
+      new WidgetLibLevel001TitleImage();
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        getMyNoteTitleImage(),
-        getTextField("请输入笔记本名或者它的一部分。", "查找笔记本", _findNoteBook),
+        widgetLibLevel001TitleImage.getWidget(),
+        // getTextField("请输入笔记本名或者它的一部分。", "查找笔记本", _findNoteBook),
+        widgetLibLevel001SearchTextField.getWidget(
+            "请输入笔记本名或者它的一部分。", "查找笔记本", _findNoteBook, 10),
         getNotesGrid(),
         // getNoteBookGrid(),
       ],
