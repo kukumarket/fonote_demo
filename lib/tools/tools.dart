@@ -19,13 +19,20 @@ class GlobalDefines {
   static final String noteDB = "fonote.db";
 }
 
-class UidTool {
-  static final uuid = Uuid();
-  static String getuuid() {
-    String stUUid = uuid.v4().toString().toUpperCase();
+class TooLib {
+  String getuuid() {
+    String stUUid = Uuid().v4().toString().toUpperCase();
     return stUUid;
   }
 }
+
+// class UidTool {
+//   static final uuid = Uuid();
+//   static String getuuid() {
+//     String stUUid = uuid.v4().toString().toUpperCase();
+//     return stUUid;
+//   }
+// }
 
 BottomNavigationBarItem getBottomNavigationBar(
     IconData iconData, Color color, double size, String title) {
@@ -73,17 +80,6 @@ Column buildMyNotePageBookColorPanelColumn(
           // onPressed: callback),
           onPressed: () => {
                 print("色彩选择按钮被按下!当前选择的色彩是:" + iconColor.toString()),
-                // if (label == "添加笔记本")
-                //   {
-                //     print("需要进入添加笔记本流程"),
-                //     Overlay.of(context).insert(overlayEntry),
-                //     new Future.delayed(Duration(seconds: 5))
-                //         .then((value) => overlayEntry.remove())
-                //   }
-                // else
-                //   {
-                //     print("需要进入调用笔记流程"),
-                //   }
               }),
       // new Container(
       //   margin: const EdgeInsets.only(top: 8.0),

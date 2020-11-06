@@ -6,6 +6,7 @@ import 'package:fonote_demo/tools/tools.dart';
 import 'package:fonote_demo/db/dbmanager.dart';
 import 'package:fonote_demo/function/notestool.dart';
 import 'package:fonote_demo/compentlib/compentlib-001.dart';
+import 'package:fonote_demo/compentlib/compentlib-003.dart';
 
 ////////////////////////////////
 
@@ -136,6 +137,21 @@ class MyNotesAreaState extends State<MyNotesArea> {
   // void _setNoteBookState() {
   //   setState(() {});
   // }
+  Function onPressedCallback() {
+    print(GlobalValues.currNoteBookName + "按钮被按下!_canOverLay is $_canOverLay");
+    print("需要进入调用笔记流程");
+    Navigator.of(context).pushNamed('/page2');
+    return null;
+  }
+
+  Function onTapCallback() {
+    print("_canOverLay is $_canOverLay");
+    if (_canOverLay) {
+      _overlayEntry.remove();
+      _canOverLay = false;
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -145,6 +161,10 @@ class MyNotesAreaState extends State<MyNotesArea> {
 
     WidgetLibLevel001SearchTextField widgetLibLevel001SearchTextField =
         WidgetLibLevel001SearchTextField();
+
+    CompentsLibLevel001NoteBooks compentsLibLevel001NoteBooks =
+        CompentsLibLevel001NoteBooks();
+
     return Column(
       children: [
         // getMyNoteTitleImage(),
@@ -152,7 +172,10 @@ class MyNotesAreaState extends State<MyNotesArea> {
         // getTextField("请输入笔记本名或者它的一部分。", "查找笔记本", _findNoteBook),
         widgetLibLevel001SearchTextField.getWidget(
             "请输入笔记本名或者它的一部分。", "查找笔记本", _findNoteBook, 10),
-        getNotesGrid(),
+        // getNotesGrid(),
+        compentsLibLevel001NoteBooks.getWidget(
+            onPressedCallback, onTapCallback),
+
         // getNoteBookGrid(),
       ],
     );
@@ -164,78 +187,75 @@ class MyNotesAreaState extends State<MyNotesArea> {
   //   await DBManager.close();
   // }
 
-  Column _buildNoteButtonColumn(IconData iconData, String item) {
-    Color color = Theme.of(context).primaryColor;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        // new Icon(icon, color: color, size: 40),
-        new IconButton(
-            icon: Icon(iconData, color: color, size: 40),
-            // onPressed: callback),
-            onPressed: () => {
-                  // test(item),
-                  GlobalValues.currNoteBookName = item,
-                  print(GlobalValues.currNoteBookName +
-                      "按钮被按下!_canOverLay is $_canOverLay"),
-                  print("需要进入调用笔记流程"),
-                  Navigator.of(context).pushNamed('/page2'),
-                }),
-        new Container(
-          margin: const EdgeInsets.only(top: 8.0),
-          child: Text(
-            item,
-            style: TextStyle(
-              fontSize: 12.0,
-              fontWeight: FontWeight.w400,
-              color: color,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+  // Column _buildNoteButtonColumn(IconData iconData, String item) {
+  //   Color color = Theme.of(context).primaryColor;
+  //   Function onPressedCallback() {
+  //     print(
+  //         GlobalValues.currNoteBookName + "按钮被按下!_canOverLay is $_canOverLay");
+  //     print("需要进入调用笔记流程");
+  //     Navigator.of(context).pushNamed('/page2');
+  //     return null;
+  //   }
 
-  //返回笔记本列表
-  List<Widget> _getNoteBooksList() {
-    return myNotesNamesList.map((item) {
-      print(item);
+  //   WidgetLibLevel002IconButton widgetLibLevel002IconButton =
+  //       WidgetLibLevel002IconButton();
 
-      if (item == "添加笔记本") {
-        return _buildNoteButtonColumn(
-            IconData(0xe722, fontFamily: 'NoteIcons'), item);
-      } else {
-        return _buildNoteButtonColumn(
-            IconData(0xe632, fontFamily: 'NoteIcons'), item);
-      }
-    }).toList();
-  }
+  //   return widgetLibLevel002IconButton.getWidget(iconData, onPressedCallback,
+  //       iconcolor: color, caption: item);
+  // }
 
-  Expanded getNotesGrid() {
-    return Expanded(
-      child: GestureDetector(
-        onTap: () {
-          print("_canOverLay is $_canOverLay");
-          if (_canOverLay) {
-            _overlayEntry.remove();
-            _canOverLay = false;
-          }
-        },
-        child: GridView(
-          primary: false,
-          shrinkWrap: true,
-          scrollDirection: Axis.vertical,
-          controller: ScrollController(), // 设置控制器
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4, //横轴三个子widget
-              childAspectRatio: 1.0 //宽高比为1时，子widge
-              ),
-          children: _getNoteBooksList(),
-        ),
-      ),
-    );
-  }
+  // //返回笔记本列表
+  // List<Widget> _getNoteBooksList() {
+  //   return myNotesNamesList.map((item) {
+  //     print(item);
+
+  //     if (item == "添加笔记本") {
+  //       return _buildNoteButtonColumn(
+  //           IconData(0xe722, fontFamily: 'NoteIcons'), item);
+  //     } else {
+  //       return _buildNoteButtonColumn(
+  //           IconData(0xe632, fontFamily: 'NoteIcons'), item);
+  //     }
+  //   }).toList();
+  // }
+
+  // Expanded getNotesGrid() {
+  //   WidgetLibLevel003NoteBooks widgetLibLevel003NoteBooks =
+  //       WidgetLibLevel003NoteBooks();
+
+  //   Function onPressedCallback() {
+  //     print(
+  //         GlobalValues.currNoteBookName + "按钮被按下!_canOverLay is $_canOverLay");
+  //     print("需要进入调用笔记流程");
+  //     Navigator.of(context).pushNamed('/page2');
+  //     return null;
+  //   }
+
+  //   return Expanded(
+  //     child: GestureDetector(
+  //       onTap: () {
+  //         print("_canOverLay is $_canOverLay");
+  //         if (_canOverLay) {
+  //           _overlayEntry.remove();
+  //           _canOverLay = false;
+  //         }
+  //       },
+  //       child: GridView(
+  //         primary: false,
+  //         shrinkWrap: true,
+  //         scrollDirection: Axis.vertical,
+  //         controller: ScrollController(), // 设置控制器
+  //         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+  //             crossAxisCount: 4, //横轴三个子widget
+  //             childAspectRatio: 1.0 //宽高比为1时，子widge
+  //             ),
+  //         // children: _getNoteBooksList(),
+  //         children: widgetLibLevel003NoteBooks.getWidget(
+  //             myNotesNamesList, onPressedCallback),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   // static OverlayEntry _getNotesAddOverlayEntry
 }

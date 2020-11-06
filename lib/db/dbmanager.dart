@@ -189,10 +189,11 @@ class DBManager {
     //--insert into '测试笔记本'(id,page,topic,mainbody)values('3671FC6A-B3C4-A0B0-825D-596FE6EBB3E8',0,'','')
     print("buildNotePages() ->");
     String newGuid = "";
+    TooLib tools = TooLib();
     await init(GlobalDefines.noteDB);
 
     if ((_database != null) && (noteBookName != null)) {
-      newGuid = UidTool.getuuid();
+      newGuid = tools.getuuid();
       String sql =
           "insert into $noteBookName (id,page,topic,mainbody) values('$newGuid',$pageNum,'','') ";
       print("newNotePage:sql = $sql");

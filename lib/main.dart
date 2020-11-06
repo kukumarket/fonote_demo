@@ -117,10 +117,11 @@ class MyWelComePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TooLib tools = TooLib();
     dbinit();
 
     getNoteNames();
-    print("uuid is " + UidTool.getuuid());
+    print("uuid is " + tools.getuuid());
 
     welcomTimer = new Timer(new Duration(seconds: 5), () {
       // 只在倒计时结束时回调
