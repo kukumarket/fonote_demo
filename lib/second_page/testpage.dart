@@ -5,7 +5,7 @@ import 'package:fonote_demo/db/dbmanager.dart';
 // import 'package:fonote_demo/function/notestool.dart';
 // import 'package:flutter/rendering.dart';
 import 'package:fonote_demo/tools/tools.dart';
-import 'package:fonote_demo/compentlib/cl-001.dart';
+import 'package:fonote_demo/compentlib/compentlib-002.dart';
 
 double noteCatlogItemHeight = 150;
 
@@ -124,13 +124,14 @@ class MyTestAreaState extends State<MyTestArea> {
 
   Widget _getTopicCard(int page) {
     double itemEdgeInset = 4.0;
-    CompentLibOutNoteTitle compentLibOutNoteTitle = CompentLibOutNoteTitle();
+    WidgetLibLevel002NoteTitle widgetLibLevel002NoteTitle =
+        WidgetLibLevel002NoteTitle();
     return GestureDetector(
       onTap: () {
         print("页面索引<$page>被选择！");
         print("需要跳转到对应的编辑页面！");
       },
-      child: compentLibOutNoteTitle.getWidget(itemEdgeInset, page,
+      child: widgetLibLevel002NoteTitle.getWidget(itemEdgeInset, page,
           "2020年11月04日", "星期三", "第一章 离开即是永别", "茫茫星海，人类是否是唯一智慧？"),
     );
   }

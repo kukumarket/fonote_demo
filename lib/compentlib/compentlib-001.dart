@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
-//此文档存放已经过基础修饰，无需组合使用的简单组件
+//此文档存放已经过基础修饰，无需组合,提供参数即可使用的简单组件
+
+// WidgetLibLevel001TitleImage
+// 标题图
+
+// WidgetLibLevel001SearchTextField
+// 查找文本框
+
+///////////////////////////////////////////////////////////////////////
 class WidgetLibLevel001TitleImage {
   Widget getWidget() {
     return Image.asset("images/index_title.png");
