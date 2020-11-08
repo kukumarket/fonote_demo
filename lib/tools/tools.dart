@@ -1,5 +1,5 @@
 // import 'dart:async';
-
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
@@ -26,6 +26,32 @@ class TooLib {
   }
 }
 
+class ScreenParameter {
+  var _screenSize;
+  var _screenPixelRatio;
+  int init(BuildContext context) {
+    _screenSize = window.physicalSize; //屏幕分辨率
+    _screenPixelRatio = MediaQuery.of(context).devicePixelRatio;
+    // GlobalValues.screenPixelRatio = _screenSize;
+    print("屏幕尺寸为 $_screenSize"); //输出屏幕尺寸
+    print("屏幕像素密度为 $_screenPixelRatio"); //输出像素密度
+    return 0;
+  }
+
+  double get width {
+    // double width = _screenSize.width;
+    return _screenSize.width;
+  }
+
+  double get height {
+    // double height = _screenSize.height;
+    return _screenSize.height;
+  }
+
+  double get pixelration {
+    return _screenPixelRatio;
+  }
+}
 // class UidTool {
 //   static final uuid = Uuid();
 //   static String getuuid() {

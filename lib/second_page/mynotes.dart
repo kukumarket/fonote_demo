@@ -11,7 +11,7 @@ import 'package:fonote_demo/compentlib/compentlib-003.dart';
 ////////////////////////////////
 
 bool _canOverLay = false;
-
+ScreenParameter screenParameter = ScreenParameter();
 void newBook(String noteBookName) async {
   await DBManager.init(GlobalDefines.noteDB);
   bool isTableExits =
@@ -51,8 +51,8 @@ OverlayEntry _overlayEntry = OverlayEntry(
       _overlayEntry.remove();
     }
 
-    WidgetLibLevel001SearchTextField widgetLibLevel001SearchTextField =
-        WidgetLibLevel001SearchTextField();
+    CompentsLibLevel001SearchTextField compentsLibLevel001SearchTextField =
+        CompentsLibLevel001SearchTextField();
     return new Center(
       child: GestureDetector(
         child: new Container(
@@ -64,7 +64,7 @@ OverlayEntry _overlayEntry = OverlayEntry(
               child: new Column(
                 children: [
                   // getTextField("请在这里输入新笔记本的名字。", "创建笔记本", _createNoteBook),
-                  widgetLibLevel001SearchTextField.getWidget(
+                  compentsLibLevel001SearchTextField.getWidget(
                       "请在这里输入新笔记本的名字。", "创建笔记本", _createNoteBook, 10),
                   getMyNoteColorPanel(context),
                 ],
@@ -85,6 +85,8 @@ class MyNotePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    screenParameter.init(context);
+    // screenParameter.init(context);
     return Scaffold(
         // appBar: AppBar(
         // 	title: Text("个人笔记 - 我的笔记本"),
@@ -156,11 +158,11 @@ class MyNotesAreaState extends State<MyNotesArea> {
   @override
   Widget build(BuildContext context) {
     //getNoteNames();
-    WidgetLibLevel001TitleImage widgetLibLevel001TitleImage =
-        WidgetLibLevel001TitleImage();
+    CompentsLibLevel001TitleImage compentsLibLevel001TitleImage =
+        CompentsLibLevel001TitleImage();
 
-    WidgetLibLevel001SearchTextField widgetLibLevel001SearchTextField =
-        WidgetLibLevel001SearchTextField();
+    CompentsLibLevel001SearchTextField compentsLibLevel001SearchTextField =
+        CompentsLibLevel001SearchTextField();
 
     CompentsLibLevel001NoteBooks compentsLibLevel001NoteBooks =
         CompentsLibLevel001NoteBooks();
@@ -168,9 +170,11 @@ class MyNotesAreaState extends State<MyNotesArea> {
     return Column(
       children: [
         // getMyNoteTitleImage(),
-        widgetLibLevel001TitleImage.getWidget(),
+        compentsLibLevel001TitleImage.getWidget(
+          imageWidth: screenParameter.width / screenParameter.pixelration,
+        ),
         // getTextField("请输入笔记本名或者它的一部分。", "查找笔记本", _findNoteBook),
-        widgetLibLevel001SearchTextField.getWidget(
+        compentsLibLevel001SearchTextField.getWidget(
             "请输入笔记本名或者它的一部分。", "查找笔记本", _findNoteBook, 10),
         // getNotesGrid(),
         compentsLibLevel001NoteBooks.getWidget(
@@ -197,10 +201,10 @@ class MyNotesAreaState extends State<MyNotesArea> {
   //     return null;
   //   }
 
-  //   WidgetLibLevel002IconButton widgetLibLevel002IconButton =
-  //       WidgetLibLevel002IconButton();
+  //   CompentsLibLevel002IconButton CompentsLibLevel002IconButton =
+  //       CompentsLibLevel002IconButton();
 
-  //   return widgetLibLevel002IconButton.getWidget(iconData, onPressedCallback,
+  //   return CompentsLibLevel002IconButton.getWidget(iconData, onPressedCallback,
   //       iconcolor: color, caption: item);
   // }
 
@@ -220,8 +224,8 @@ class MyNotesAreaState extends State<MyNotesArea> {
   // }
 
   // Expanded getNotesGrid() {
-  //   WidgetLibLevel003NoteBooks widgetLibLevel003NoteBooks =
-  //       WidgetLibLevel003NoteBooks();
+  //   CompentsLibLevel003NoteBooks CompentsLibLevel003NoteBooks =
+  //       CompentsLibLevel003NoteBooks();
 
   //   Function onPressedCallback() {
   //     print(
@@ -250,7 +254,7 @@ class MyNotesAreaState extends State<MyNotesArea> {
   //             childAspectRatio: 1.0 //宽高比为1时，子widge
   //             ),
   //         // children: _getNoteBooksList(),
-  //         children: widgetLibLevel003NoteBooks.getWidget(
+  //         children: CompentsLibLevel003NoteBooks.getWidget(
   //             myNotesNamesList, onPressedCallback),
   //       ),
   //     ),

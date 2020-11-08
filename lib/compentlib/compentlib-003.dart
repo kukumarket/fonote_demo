@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fonote_demo/tools/tools.dart';
 
-class WidgetLibLevel001ButtonIcon {
+class CompentsLibLevel001ButtonIcon {
   Widget getWidget(
     IconData iconData,
     Function() onPressedCallback, {
@@ -19,7 +19,7 @@ class WidgetLibLevel001ButtonIcon {
   }
 }
 
-class WidgetLibLevel001ButtonCaption {
+class CompentsLibLevel001ButtonCaption {
   Widget getWidget(
       {String caption = "",
       Color iconcolor = Colors.blue,
@@ -39,24 +39,24 @@ class WidgetLibLevel001ButtonCaption {
   }
 }
 
-class WidgetLibLevel002IconButton {
+class CompentsLibLevel002IconButton {
   Widget getWidget(IconData iconData, Function() onPressedCallbaack,
       {String caption = "",
       Color iconcolor = Colors.blue,
       double iconsize = 40,
       double fontsize = 14,
       FontWeight fontweight = FontWeight.w600}) {
-    WidgetLibLevel001ButtonIcon widgetLibLevel001ButtonIcon =
-        WidgetLibLevel001ButtonIcon();
-    WidgetLibLevel001ButtonCaption widgetLibLevel001ButtonCaption =
-        WidgetLibLevel001ButtonCaption();
+    CompentsLibLevel001ButtonIcon compentsLibLevel001ButtonIcon =
+        CompentsLibLevel001ButtonIcon();
+    CompentsLibLevel001ButtonCaption compentsLibLevel001ButtonCaption =
+        CompentsLibLevel001ButtonCaption();
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        widgetLibLevel001ButtonIcon.getWidget(iconData, onPressedCallbaack,
+        compentsLibLevel001ButtonIcon.getWidget(iconData, onPressedCallbaack,
             caption: caption, iconcolor: iconcolor, iconsize: iconsize),
-        widgetLibLevel001ButtonCaption.getWidget(
+        compentsLibLevel001ButtonCaption.getWidget(
             caption: caption,
             iconcolor: iconcolor,
             fontsize: fontsize,
@@ -66,9 +66,9 @@ class WidgetLibLevel002IconButton {
   }
 }
 
-class WidgetLibLevel003NoteBooks {
-  WidgetLibLevel002IconButton widgetLibLevel002IconButton =
-      WidgetLibLevel002IconButton();
+class CompentsLibLevel003NoteBooks {
+  CompentsLibLevel002IconButton compentsLibLevel002IconButton =
+      CompentsLibLevel002IconButton();
   List<Widget> getWidget(
       List<String> noteBookList, Function() onPressedCallback,
       {String caption = "",
@@ -80,7 +80,7 @@ class WidgetLibLevel003NoteBooks {
       print(item);
 
       if (item == "添加笔记本") {
-        return widgetLibLevel002IconButton.getWidget(
+        return compentsLibLevel002IconButton.getWidget(
           IconData(0xe722, fontFamily: 'NoteIcons'),
           onPressedCallback,
           caption: item,
@@ -89,7 +89,7 @@ class WidgetLibLevel003NoteBooks {
           fontsize: fontsize,
         );
       } else {
-        return widgetLibLevel002IconButton.getWidget(
+        return compentsLibLevel002IconButton.getWidget(
             IconData(0xe632, fontFamily: 'NoteIcons'), onPressedCallback,
             caption: item,
             iconcolor: iconcolor,
@@ -102,8 +102,8 @@ class WidgetLibLevel003NoteBooks {
 }
 
 class CompentsLibLevel001NoteBooks {
-  WidgetLibLevel003NoteBooks widgetLibLevel003NoteBooks =
-      WidgetLibLevel003NoteBooks();
+  CompentsLibLevel003NoteBooks compentsLibLevel003NoteBooks =
+      CompentsLibLevel003NoteBooks();
   Widget getWidget(Function() onPressCallback, Function() onTapCallback) {
     return Expanded(
       child: GestureDetector(
@@ -118,7 +118,7 @@ class CompentsLibLevel001NoteBooks {
               childAspectRatio: 1.0 //宽高比为1时，子widge
               ),
           // children: _getNoteBooksList(),
-          children: widgetLibLevel003NoteBooks.getWidget(
+          children: compentsLibLevel003NoteBooks.getWidget(
               myNotesNamesList, onPressCallback),
         ),
       ),

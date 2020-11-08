@@ -2,20 +2,26 @@ import 'package:flutter/material.dart';
 
 //此文档存放已经过基础修饰，无需组合,提供参数即可使用的简单组件
 
-// WidgetLibLevel001TitleImage
+// CompentsLibLevel001TitleImage
 // 标题图
 
-// WidgetLibLevel001SearchTextField
+// CompentsLibLevel001SearchTextField
 // 查找文本框
 
 ///////////////////////////////////////////////////////////////////////
-class WidgetLibLevel001TitleImage {
-  Widget getWidget() {
-    return Image.asset("images/index_title.png");
+class CompentsLibLevel001TitleImage {
+  Widget getWidget({imageWidth = 414.0, imageHeight = 200.0}) {
+    // Image newImage = Image.asset("images/index_title.png");
+    return Image(
+      image: AssetImage("images/index_title.png"),
+      fit: BoxFit.fill,
+      width: imageWidth,
+      height: imageHeight,
+    );
   }
 }
 
-class WidgetLibLevel001SearchTextField {
+class CompentsLibLevel001SearchTextField {
   Widget getWidget(String hintStr, String labelStr,
       void Function(String) txtCallback, double marginSize) {
     return Container(

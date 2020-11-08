@@ -55,13 +55,13 @@ class MyNoteSquareArea extends StatefulWidget {
 }
 
 class MyNoteSquareAreaState extends State<MyNoteSquareArea> {
-  WidgetLibLevel001TitleImage widgetLibLevel001TitleImage =
-      new WidgetLibLevel001TitleImage();
+  CompentsLibLevel001TitleImage compentsLibLevel001TitleImage =
+      new CompentsLibLevel001TitleImage();
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        widgetLibLevel001TitleImage.getWidget(),
+        compentsLibLevel001TitleImage.getWidget(),
         Expanded(child: _getPublicNoteList())
       ],
     );

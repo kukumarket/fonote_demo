@@ -124,14 +124,14 @@ class MyTestAreaState extends State<MyTestArea> {
 
   Widget _getTopicCard(int page) {
     double itemEdgeInset = 4.0;
-    WidgetLibLevel002NoteTitle widgetLibLevel002NoteTitle =
-        WidgetLibLevel002NoteTitle();
+    CompentsLibLevel002NoteTitle compentsLibLevel002NoteTitle =
+        CompentsLibLevel002NoteTitle();
     return GestureDetector(
       onTap: () {
         print("页面索引<$page>被选择！");
         print("需要跳转到对应的编辑页面！");
       },
-      child: widgetLibLevel002NoteTitle.getWidget(itemEdgeInset, page,
+      child: compentsLibLevel002NoteTitle.getWidget(itemEdgeInset, page,
           "2020年11月04日", "星期三", "第一章 离开即是永别", "茫茫星海，人类是否是唯一智慧？"),
     );
   }

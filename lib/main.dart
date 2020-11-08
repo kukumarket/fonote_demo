@@ -17,6 +17,7 @@ import 'package:fonote_demo/second_page/testpage.dart';
 import 'package:fonote_demo/db/dbmanager.dart';
 import 'package:fonote_demo/tools/tools.dart';
 
+ScreenParameter screenParameter = new ScreenParameter();
 void main() {
   runApp(FooNoteApp());
   //fooNoteApp是本程序的主进程
@@ -117,11 +118,15 @@ class MyWelComePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TooLib tools = TooLib();
+    // TooLib tools = TooLib();
     dbinit();
-
     getNoteNames();
-    print("uuid is " + tools.getuuid());
+
+    screenParameter.init(context);
+    // // print("uuid is " + tools.getuuid());
+    print("宽度为:" + screenParameter.width.toString());
+    print("高度为:" + screenParameter.height.toString());
+    print("像素密度为:" + screenParameter.pixelration.toString());
 
     welcomTimer = new Timer(new Duration(seconds: 5), () {
       // 只在倒计时结束时回调

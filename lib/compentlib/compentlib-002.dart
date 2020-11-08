@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-// WidgetLibLevel001NoteDate
+// CompentsLibLevel001NoteDate
 // 展示笔记创建时间和页码信息的一列三行组件
 
-// WidgetLibLevel001NoteTopic
+// CompentsLibLevel001NoteTopic
 // 展示笔记标题和摘要的一列两行组件
 
-// WidgetLibLevel002NoteTitle
+// CompentsLibLevel002NoteTitle
 // 展示笔记中单项内容信息的一行两列组件
 // 该组件是组合组件
 
 ////////////////////////////////////////////////////////////////////////////
-class WidgetLibLevel001NoteDate {
+class CompentsLibLevel001NoteDate {
   Widget getWidget(double itemEdgeInset, int page, String date, String week) {
     return Container(
       alignment: Alignment.center,
@@ -48,7 +48,7 @@ class WidgetLibLevel001NoteDate {
   }
 }
 
-class WidgetLibLevel001NoteTopic {
+class CompentsLibLevel001NoteTopic {
   Widget getWidget(double itemEdgeInset, String topic, String context) {
     return Container(
       alignment: Alignment.center,
@@ -81,10 +81,11 @@ class WidgetLibLevel001NoteTopic {
   }
 }
 
-class WidgetLibLevel002NoteTitle {
-  WidgetLibLevel001NoteDate _widgetLibOutNoteDate = WidgetLibLevel001NoteDate();
-  WidgetLibLevel001NoteTopic _widgetLibOutNoteTopic =
-      WidgetLibLevel001NoteTopic();
+class CompentsLibLevel002NoteTitle {
+  CompentsLibLevel001NoteDate compentsLibLevel001NoteDate =
+      CompentsLibLevel001NoteDate();
+  CompentsLibLevel001NoteTopic compentsLibLevel001NoteTopic =
+      CompentsLibLevel001NoteTopic();
 
   Widget getWidget(double itemEdgeInset, int page, String date, String week,
       String topic, String context) {
@@ -93,11 +94,11 @@ class WidgetLibLevel002NoteTitle {
         children: [
           Expanded(
               flex: 35,
-              child: _widgetLibOutNoteDate.getWidget(
+              child: compentsLibLevel001NoteDate.getWidget(
                   itemEdgeInset, page, date, week)),
           Expanded(
               flex: 65,
-              child: _widgetLibOutNoteTopic.getWidget(
+              child: compentsLibLevel001NoteTopic.getWidget(
                   itemEdgeInset, topic, context)),
         ],
       ),
