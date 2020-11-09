@@ -174,10 +174,10 @@ Row getMyNoteColorPanel(BuildContext context) {
 
 List<BottomNavigationBarItem> getBottomNavigation() {
   List<BottomNavigationBarItem> mBottomNavigationList = [
-    getBottomNavigationBar(Icons.print, Colors.blue, 30, "个人笔记"),
+    getBottomNavigationBar(Icons.print, Colors.blue, 30, "我的笔记本"),
     getBottomNavigationBar(Icons.print, Colors.blue, 30, "笔记广场"),
-    getBottomNavigationBar(Icons.print, Colors.blue, 30, "千里官宣"),
-    getBottomNavigationBar(Icons.print, Colors.blue, 30, "我的"),
+    getBottomNavigationBar(Icons.print, Colors.blue, 30, "千里俱乐部"),
+    getBottomNavigationBar(Icons.print, Colors.blue, 30, "软件信息"),
     getBottomNavigationBar(Icons.print, Colors.blue, 30, "测试页")
   ];
   return mBottomNavigationList;

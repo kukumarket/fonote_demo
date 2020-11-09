@@ -55,14 +55,14 @@ class MyInfomationArea extends StatefulWidget {
 }
 
 class MyInfomationAreaState extends State<MyInfomationArea> {
-  CompentsLibLevel001TitleImage compentsLibLevel001TitleImage =
-      new CompentsLibLevel001TitleImage();
+  Clib001001001TitleImage clib001001001titleImage =
+      new Clib001001001TitleImage();
   @override
   Widget build(BuildContext context) {
     return Column(
       // children: [getMyNoteTitleImage(), Expanded(child: _getPublicNoteList())],
       children: [
-        compentsLibLevel001TitleImage.getWidget(),
+        clib001001001titleImage.getWidget(),
         Expanded(child: _getPublicNoteList())
       ],
     );

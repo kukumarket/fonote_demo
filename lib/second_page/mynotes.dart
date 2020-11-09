@@ -51,8 +51,8 @@ OverlayEntry _overlayEntry = OverlayEntry(
       _overlayEntry.remove();
     }
 
-    CompentsLibLevel001SearchTextField compentsLibLevel001SearchTextField =
-        CompentsLibLevel001SearchTextField();
+    Clib002001001SearchTextField clib002001001searchTextField =
+        Clib002001001SearchTextField();
     return new Center(
       child: GestureDetector(
         child: new Container(
@@ -64,7 +64,7 @@ OverlayEntry _overlayEntry = OverlayEntry(
               child: new Column(
                 children: [
                   // getTextField("请在这里输入新笔记本的名字。", "创建笔记本", _createNoteBook),
-                  compentsLibLevel001SearchTextField.getWidget(
+                  clib002001001searchTextField.getWidget(
                       "请在这里输入新笔记本的名字。", "创建笔记本", _createNoteBook, 10),
                   getMyNoteColorPanel(context),
                 ],
@@ -158,27 +158,25 @@ class MyNotesAreaState extends State<MyNotesArea> {
   @override
   Widget build(BuildContext context) {
     //getNoteNames();
-    CompentsLibLevel001TitleImage compentsLibLevel001TitleImage =
-        CompentsLibLevel001TitleImage();
+    Clib001001001TitleImage clib001001001titleImage = Clib001001001TitleImage();
 
-    CompentsLibLevel001SearchTextField compentsLibLevel001SearchTextField =
-        CompentsLibLevel001SearchTextField();
+    Clib002001001SearchTextField clib002001001searchTextField =
+        Clib002001001SearchTextField();
 
-    CompentsLibLevel001NoteBooks compentsLibLevel001NoteBooks =
-        CompentsLibLevel001NoteBooks();
+    Clib010003004NoteBooksGrid clib010003004noteBooksGrid =
+        Clib010003004NoteBooksGrid();
 
     return Column(
       children: [
         // getMyNoteTitleImage(),
-        compentsLibLevel001TitleImage.getWidget(
+        clib001001001titleImage.getWidget(
           imageWidth: screenParameter.width / screenParameter.pixelration,
         ),
         // getTextField("请输入笔记本名或者它的一部分。", "查找笔记本", _findNoteBook),
-        compentsLibLevel001SearchTextField.getWidget(
+        clib002001001searchTextField.getWidget(
             "请输入笔记本名或者它的一部分。", "查找笔记本", _findNoteBook, 10),
         // getNotesGrid(),
-        compentsLibLevel001NoteBooks.getWidget(
-            onPressedCallback, onTapCallback),
+        clib010003004noteBooksGrid.getWidget(onPressedCallback, onTapCallback),
 
         // getNoteBookGrid(),
       ],

@@ -1,6 +1,7 @@
 // import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:fonote_demo/compentlib/compentlib-004.dart';
 import 'package:fonote_demo/db/dbmanager.dart';
 // import 'package:fonote_demo/function/notestool.dart';
 // import 'package:flutter/rendering.dart';
@@ -21,45 +22,38 @@ class MyNoteCatlogPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void onPressRiLi() {}
+    void onPressSearch() {}
+    void onPressNewPage() async {
+      String bookName = GlobalValues.currNoteBookName;
+      print("笔记本:$bookName 需要一个新的页面,尝试调用 getEmptyPage()获得新页面 page3");
+      //addNewPage();
+      String newPageid = "";
+      newPageid = await getEmptyPage(bookName);
+      print("笔记本:$bookName 中的新页面id为 $newPageid");
+      GlobalValues.currNoteBookPageID = newPageid;
+      Navigator.of(context).pushNamed('/page3');
+    }
+
+    Clib012004002IconButton clib012004002iconButton = Clib012004002IconButton();
+    Clib014004002BgBox clib014004002bgBox = Clib014004002BgBox();
     return Scaffold(
       appBar: AppBar(
         leading: Icon(IconData(0xe632, fontFamily: 'NoteIcons'), size: 32),
         title: Text(GlobalValues.currNoteBookName),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(IconData(0xe7b6, fontFamily: 'NoteIcons'), size: 32),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(IconData(0xe723, fontFamily: 'NoteIcons'), size: 32),
-            onPressed: () {},
-          )
+          clib012004002iconButton.getWidget(onPressRiLi,
+              iconName: "日历", iconSize: 32),
+          clib012004002iconButton.getWidget(onPressSearch,
+              iconName: "搜索", iconSize: 32),
         ],
       ),
       body: DecoratedBox(
-        decoration: BoxDecoration(
-          // border: Border.all(),
-          image: DecorationImage(
-            image: AssetImage("images/bg-qianli-03.png"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Center(
-          child: MyNoteCatlogArea(),
-        ),
-      ),
+          decoration: clib014004002bgBox.getWidget(),
+          child: MyNoteCatlogArea()),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          String bookName = GlobalValues.currNoteBookName;
-          print("笔记本:$bookName 需要一个新的页面,尝试调用 getEmptyPage()获得新页面 page3");
-          //addNewPage();
-          String newPageid = "";
-          newPageid = await getEmptyPage(bookName);
-          print("笔记本:$bookName 中的新页面id为 $newPageid");
-          GlobalValues.currNoteBookPageID = newPageid;
-          Navigator.of(context).pushNamed('/page3');
-        },
+        onPressed: onPressNewPage,
         tooltip: '添加新的笔记',
         child: Icon(Icons.add),
       ),

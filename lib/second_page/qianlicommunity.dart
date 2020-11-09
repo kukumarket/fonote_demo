@@ -56,13 +56,13 @@ class MyQianLiCommunityArea extends StatefulWidget {
 }
 
 class MyQianLiCommunityAreaState extends State<MyQianLiCommunityArea> {
-  CompentsLibLevel001TitleImage compentsLibLevel001TitleImage =
-      new CompentsLibLevel001TitleImage();
+  Clib001001001TitleImage clib001001001titleImage =
+      new Clib001001001TitleImage();
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        compentsLibLevel001TitleImage.getWidget(),
+        // clib001001001titleImage.getWidget(),
         Expanded(child: _getPublicNoteList())
       ],
     );
@@ -79,14 +79,14 @@ class MyQianLiCommunityAreaState extends State<MyQianLiCommunityArea> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("images/line-01.png"),
+            // Image.asset("images/line-01.png"),
             SizedBox(width: 50), // 50宽度
             Text(
               "2020年09月",
               style: TextStyle(fontSize: 22),
             ),
             SizedBox(width: 50), // 50宽度
-            Image.asset("images/line-01.png"),
+            // Image.asset("images/line-01.png"),
           ],
         ),
         Row(
