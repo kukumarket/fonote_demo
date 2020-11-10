@@ -2,12 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:fonote_demo/compentlib/compentlib-001.dart';
-import 'package:fonote_demo/db/dbmanager.dart';
+// import 'package:fonote_demo/db/dbmanager.dart';
 // import 'package:fonote_demo/function/notestool.dart';
 // import 'package:flutter/rendering.dart';
 import 'package:fonote_demo/tools/tools.dart';
 
 import 'package:fonote_demo/compentlib/compentlib-002.dart';
+import 'package:fonote_demo/datalib/datalib-001.dart';
+
+DatabaseManager databaseManager = DatabaseManager();
 
 double noteCatlogItemHeight = 150;
 
@@ -48,7 +51,7 @@ class MyTestPage extends StatelessWidget {
           print("笔记本:$bookName 需要一个新的页面,尝试调用 getEmptyPage()获得新页面 page3");
           //addNewPage();
           String newPageid = "";
-          newPageid = await getEmptyPage(bookName);
+          newPageid = await databaseManager.getEmptyPage(bookName);
           print("笔记本:$bookName 中的新页面id为 $newPageid");
           GlobalValues.currNoteBookPageID = newPageid;
           Navigator.of(context).pushNamed('/page3');
@@ -93,6 +96,7 @@ class MyTestAreaState extends State<MyTestArea> {
         Clib002001001SearchTextField();
 
     Clib016002004NoteTitles clib016002004noteTitles = Clib016002004NoteTitles();
+
     void onChangedText(String stSearch) {
       print("当前需要搜索的内容是: " + stSearch);
     }
@@ -101,36 +105,7 @@ class MyTestAreaState extends State<MyTestArea> {
       children: [
         clib002001001searchTextField.getWidget(
             "输入您想要搜索的笔记内容", "在所有笔记中搜索", onChangedText, 4.0),
-        clib016002004noteTitles.getWidget(),
-        // Padding(
-        //   padding: const EdgeInsets.all(4.0),
-        //   child: TextField(
-        //     decoration: InputDecoration(
-        //       enabledBorder: OutlineInputBorder(
-        //           borderSide: BorderSide(
-        //         color: Colors.green, //边框颜色为绿色
-        //         width: 1, //宽度为5
-        //       )),
-        //       fillColor: Color.fromARGB(150, 0xba, 0xca, 0xc6),
-        //       filled: true,
-        //       suffixText: "内容检索",
-        //       prefixIcon: Icon(Icons.search),
-        //     ),
-        //     onChanged: (searchText) {},
-        //   ),
-        // ),
-        //_getNoteCatlogList(),
-        //"请输入笔记本名或者它的一部分。", "查找笔记本", _findNoteBook, 10
-
-        // TextField(
-        //   decoration: InputDecoration(
-        //     fillColor: Color.fromARGB(150, 0xba, 0xca, 0xc6),
-        //     filled: true,
-        //     suffixText: "内容检索",
-        //     prefixIcon: Icon(Icons.search),
-        //   ),
-        //   onChanged: (searchText) {},
-        // ),
+        clib016002004noteTitles.getWidget()
       ],
     );
   }

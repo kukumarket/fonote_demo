@@ -14,7 +14,7 @@ class Clib001001001TitleImage {
     // Image newImage = Image.asset("images/index_title.png");
     return Image(
       image: AssetImage("images/index_title.png"),
-      fit: BoxFit.fill,
+      fit: BoxFit.cover,
       width: imageWidth,
       height: imageHeight,
     );

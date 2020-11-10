@@ -3,24 +3,25 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fonote_demo/tools/tools.dart';
-import 'package:fonote_demo/db/dbmanager.dart';
-import 'package:fonote_demo/function/notestool.dart';
+// import 'package:fonote_demo/db/dbmanager.dart';
+// import 'package:fonote_demo/function/notestool.dart';
 import 'package:fonote_demo/compentlib/compentlib-001.dart';
 import 'package:fonote_demo/compentlib/compentlib-003.dart';
+import 'package:fonote_demo/datalib/datalib-001.dart';
 
+DatabaseManager databaseManager = DatabaseManager();
 ////////////////////////////////
 
 bool _canOverLay = false;
 ScreenParameter screenParameter = ScreenParameter();
 void newBook(String noteBookName) async {
-  await DBManager.init(GlobalDefines.noteDB);
-  bool isTableExits =
-      await DBManager.isTableExists(GlobalDefines.noteDB, noteBookName);
+  // await DBManager.init(GlobalDefines.noteDB);
+  bool isTableExits = await databaseManager.isTableExists(noteBookName);
   if (!isTableExits) {
     print("没有同名笔记本，允许建立笔记本 $noteBookName。");
-    await NotesTool.createNoteBook(noteBookName);
+    await databaseManager.createNoteBook(noteBookName);
   }
-  DBManager.close();
+  // DBManager.close();
 }
 
 OverlayEntry _overlayEntry = OverlayEntry(
@@ -170,8 +171,7 @@ class MyNotesAreaState extends State<MyNotesArea> {
       children: [
         // getMyNoteTitleImage(),
         clib001001001titleImage.getWidget(
-          imageWidth: screenParameter.width / screenParameter.pixelration,
-        ),
+            imageWidth: screenParameter.width / screenParameter.pixelration),
         // getTextField("请输入笔记本名或者它的一部分。", "查找笔记本", _findNoteBook),
         clib002001001searchTextField.getWidget(
             "请输入笔记本名或者它的一部分。", "查找笔记本", _findNoteBook, 10),

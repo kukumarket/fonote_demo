@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:fonote_demo/function/notestool.dart';
+// import 'package:fonote_demo/function/notestool.dart';
 import 'package:fonote_demo/second_page/mynotes.dart';
 import 'package:fonote_demo/second_page/mynotecatlog.dart';
 import 'package:fonote_demo/second_page/mynoteedit.dart';
@@ -14,8 +14,9 @@ import 'package:fonote_demo/second_page/p3-recyle.dart';
 import 'package:fonote_demo/second_page/p3-mailtous.dart';
 import 'package:fonote_demo/second_page/p3-copyright.dart';
 import 'package:fonote_demo/second_page/testpage.dart';
-import 'package:fonote_demo/db/dbmanager.dart';
+// import 'package:fonote_demo/db/dbmanager.dart';
 import 'package:fonote_demo/tools/tools.dart';
+import 'package:fonote_demo/datalib/datalib-001.dart';
 
 ScreenParameter screenParameter = new ScreenParameter();
 void main() {
@@ -94,26 +95,26 @@ class FooNoteApp extends StatelessWidget {
 //but one or more of its instance fields aren't final: MyWelComePage.welcomTimer
 //因此将_welcomTimer更改为 welcomTimer，并放到类外。
 Timer welcomTimer;
+DatabaseManager databaseManager = DatabaseManager();
 
 class MyWelComePage extends StatelessWidget {
   MyWelComePage({Key key, this.parameter}) : super(key: key);
   final parameter;
 
   void dbinit() async {
-    await DBManager.init(GlobalDefines.noteDB);
-    bool isTableExits = await DBManager.isTableExists("fonote.db", "使用说明");
+    // await DBManager.init(GlobalDefines.noteDB);
+    await databaseManager.initDB();
+    bool isTableExits = await databaseManager.isTableExists("使用说明");
     if (!isTableExits) {
       print("数据库中不存在使用说明，需要建立默认笔记本。");
-      await NotesTool.createNoteBook("使用说明");
+      await databaseManager.createNoteBook("使用说明");
     }
-    DBManager.close();
+    // DBManager.close();
   }
 
   void getNoteNames() async {
     // DBManager.init("fonote.db");
-    myNotesNamesList =
-        await DBManager.getTableNamesFromDB(GlobalDefines.noteDB);
-    DBManager.close();
+    myNotesNamesList = await databaseManager.getTableNamesFromDB();
   }
 
   @override

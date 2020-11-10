@@ -2,7 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:fonote_demo/tools/tools.dart';
-import 'package:fonote_demo/db/dbmanager.dart';
+// import 'package:fonote_demo/db/dbmanager.dart';
+import 'package:fonote_demo/datalib/datalib-001.dart';
+
+DatabaseManager databaseManager = DatabaseManager();
 
 class MyNoteEditPage extends StatelessWidget {
   // Default placeholder text
@@ -32,11 +35,10 @@ class MyNoteEditPage extends StatelessWidget {
               print(GlobalValues.currNoteBookTitle);
               print("当前页面正文为 ");
               print(GlobalValues.currNoteBookMemo);
-              updataPage(
-                  GlobalValues.currNoteBookName,
+              databaseManager.updataPage(GlobalValues.currNoteBookName,
                   GlobalValues.currNoteBookPageID,
-                  GlobalValues.currNoteBookTitle,
-                  GlobalValues.currNoteBookMemo);
+                  pageTitle: GlobalValues.currNoteBookTitle,
+                  pageMemo: GlobalValues.currNoteBookMemo);
             },
           )
         ],

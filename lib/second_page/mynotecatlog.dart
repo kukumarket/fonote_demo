@@ -2,10 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:fonote_demo/compentlib/compentlib-004.dart';
-import 'package:fonote_demo/db/dbmanager.dart';
+// import 'package:fonote_demo/db/dbmanager.dart';
 // import 'package:fonote_demo/function/notestool.dart';
 // import 'package:flutter/rendering.dart';
 import 'package:fonote_demo/tools/tools.dart';
+import 'package:fonote_demo/datalib/datalib-001.dart';
+
+DatabaseManager databaseManager = DatabaseManager();
 
 class MyNoteCatlogPage extends StatelessWidget {
   // Default placeholder text
@@ -24,12 +27,13 @@ class MyNoteCatlogPage extends StatelessWidget {
   Widget build(BuildContext context) {
     void onPressRiLi() {}
     void onPressSearch() {}
+
     void onPressNewPage() async {
       String bookName = GlobalValues.currNoteBookName;
       print("笔记本:$bookName 需要一个新的页面,尝试调用 getEmptyPage()获得新页面 page3");
       //addNewPage();
       String newPageid = "";
-      newPageid = await getEmptyPage(bookName);
+      newPageid = await databaseManager.getEmptyPage(bookName);
       print("笔记本:$bookName 中的新页面id为 $newPageid");
       GlobalValues.currNoteBookPageID = newPageid;
       Navigator.of(context).pushNamed('/page3');
