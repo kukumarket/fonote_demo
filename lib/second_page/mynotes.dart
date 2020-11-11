@@ -1,36 +1,25 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+
 import 'package:fonote_demo/tools/tools.dart';
 // import 'package:fonote_demo/db/dbmanager.dart';
 // import 'package:fonote_demo/function/notestool.dart';
 import 'package:fonote_demo/compentlib/compentlib-001.dart';
 import 'package:fonote_demo/compentlib/compentlib-003.dart';
-import 'package:fonote_demo/datalib/datalib-001.dart';
+import 'package:fonote_demo/datalib/datalib-002.dart';
 
 DatabaseManager databaseManager = DatabaseManager();
 ////////////////////////////////
 
 bool _canOverLay = false;
 ScreenParameter screenParameter = ScreenParameter();
-void newBook(String noteBookName) async {
-  // await DBManager.init(GlobalDefines.noteDB);
-  bool isTableExits = await databaseManager.isTableExists(noteBookName);
-  if (!isTableExits) {
-    print("没有同名笔记本，允许建立笔记本 $noteBookName。");
-    await databaseManager.createNoteBook(noteBookName);
-  }
-  // DBManager.close();
-}
 
 OverlayEntry _overlayEntry = OverlayEntry(
   builder: (context) {
-    var screenSize = window.physicalSize; //屏幕分辨率
-    var screenPixelRatio = MediaQuery.of(context).devicePixelRatio;
-    GlobalValues.screenPixelRatio = screenPixelRatio;
-    print("屏幕尺寸为 $screenSize"); //输出屏幕尺寸
-    print("屏幕像素密度为 $screenPixelRatio"); //输出像素密度
+    // var screenSize = window.physicalSize; //屏幕分辨率
+    // var screenPixelRatio = MediaQuery.of(context).devicePixelRatio;
+    // GlobalValues.screenPixelRatio = screenPixelRatio;
+    // // print("屏幕尺寸为 $screenSize"); //输出屏幕尺寸
+    // // print("屏幕像素密度为 $screenPixelRatio"); //输出像素密度
 
     void _createNoteBook(String noteBookName) {
       print("尝试创建$noteBookName");
@@ -57,8 +46,8 @@ OverlayEntry _overlayEntry = OverlayEntry(
     return new Center(
       child: GestureDetector(
         child: new Container(
-          width: screenSize.width / screenPixelRatio * 0.95,
-          height: screenSize.height / screenPixelRatio * 0.25,
+          width: screenParameter.width / screenParameter.pixelration * 0.95,
+          height: screenParameter.height / screenParameter.pixelration * 0.25,
           child: new Card(
             child: new Padding(
               padding: EdgeInsets.all(8),
@@ -78,6 +67,15 @@ OverlayEntry _overlayEntry = OverlayEntry(
     );
   },
 );
+void newBook(String noteBookName) async {
+  // await DBManager.init(GlobalDefines.noteDB);
+  bool isTableExits = await databaseManager.isTableExists(noteBookName);
+  if (!isTableExits) {
+    print("没有同名笔记本，允许建立笔记本 $noteBookName。");
+    await databaseManager.createNoteBook(noteBookName);
+  }
+  // DBManager.close();
+}
 
 ////////////////////////////////
 class MyNotePage extends StatelessWidget {
@@ -144,6 +142,7 @@ class MyNotesAreaState extends State<MyNotesArea> {
     print(GlobalValues.currNoteBookName + "按钮被按下!_canOverLay is $_canOverLay");
     print("需要进入调用笔记流程");
     Navigator.of(context).pushNamed('/page2');
+
     return null;
   }
 

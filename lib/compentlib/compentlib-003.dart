@@ -18,18 +18,21 @@ import 'package:fonote_demo/tools/tools.dart';
 
 ////////////////////////////////////////////////////////////////////////////
 class Clib006003001ButtonIcon {
-  Widget getWidget(
-    IconData iconData,
-    Function() onPressedCallback, {
-    String caption = "",
-    Color iconcolor = Colors.blue,
-    double iconsize = 40,
-  }) {
+  Widget getWidget(IconData iconData, Function() onPressedCallback,
+      {String caption = "",
+      Color iconcolor = Colors.blue,
+      double iconsize = 40}) {
     return new IconButton(
         icon: Icon(iconData, color: iconcolor, size: iconsize),
         // onPressed: callback),
         onPressed: () => {
+              //如果这个类只用于笔记本的话，是没问题的。
+              //问题在于这个类如果被用于其他用途，比如色彩选择。
+              //那么下面这个条目就明显不合用了。
               GlobalValues.currNoteBookName = caption,
+              //这个条目之所以必须放在这里,是因为这个caption是IconButton的属性
+              //那么，如果我设定一个用于外部调用的公开类，在此处的调用中调用公开类。则后续处理时，只需要
+              // print("Clib006003001ButtonIcon : stParameter = " + stParameter),
               onPressedCallback(),
             });
   }
@@ -56,21 +59,31 @@ class Clib007003001ButtonCaption {
 }
 
 class Clib008003002IconButton {
-  Widget getWidget(IconData iconData, Function() onPressedCallbaack,
-      {String caption = "",
-      Color iconcolor = Colors.blue,
-      double iconsize = 40,
-      double fontsize = 14,
-      FontWeight fontweight = FontWeight.w600}) {
+  Widget getWidget(
+    IconData iconData,
+    Function() onPressedCallbaack, {
+    String caption = "",
+    Color iconcolor = Colors.blue,
+    double iconsize = 40,
+    double fontsize = 14,
+    FontWeight fontweight = FontWeight.w600,
+  }) {
     Clib006003001ButtonIcon clib006003001buttonIcon = Clib006003001ButtonIcon();
     Clib007003001ButtonCaption clib007003001buttonCaption =
         Clib007003001ButtonCaption();
+
+    // onPressedCallbaack();
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        clib006003001buttonIcon.getWidget(iconData, onPressedCallbaack,
-            caption: caption, iconcolor: iconcolor, iconsize: iconsize),
+        clib006003001buttonIcon.getWidget(
+          iconData,
+          onPressedCallbaack,
+          caption: caption,
+          iconcolor: iconcolor,
+          iconsize: iconsize,
+        ),
         clib007003001buttonCaption.getWidget(
             caption: caption,
             iconcolor: iconcolor,

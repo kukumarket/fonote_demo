@@ -8,7 +8,7 @@ import 'package:fonote_demo/compentlib/compentlib-001.dart';
 import 'package:fonote_demo/tools/tools.dart';
 
 import 'package:fonote_demo/compentlib/compentlib-002.dart';
-import 'package:fonote_demo/datalib/datalib-001.dart';
+import 'package:fonote_demo/datalib/datalib-002.dart';
 
 DatabaseManager databaseManager = DatabaseManager();
 
@@ -95,7 +95,8 @@ class MyTestAreaState extends State<MyTestArea> {
     Clib002001001SearchTextField clib002001001searchTextField =
         Clib002001001SearchTextField();
 
-    Clib016002004NoteTitles clib016002004noteTitles = Clib016002004NoteTitles();
+    Clib016002004NoteTitlesListView clib016002004noteTitlesListView =
+        Clib016002004NoteTitlesListView();
 
     void onChangedText(String stSearch) {
       print("当前需要搜索的内容是: " + stSearch);
@@ -105,7 +106,7 @@ class MyTestAreaState extends State<MyTestArea> {
       children: [
         clib002001001searchTextField.getWidget(
             "输入您想要搜索的笔记内容", "在所有笔记中搜索", onChangedText, 4.0),
-        clib016002004noteTitles.getWidget()
+        clib016002004noteTitlesListView.getWidget()
       ],
     );
   }

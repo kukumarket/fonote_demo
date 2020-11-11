@@ -148,25 +148,16 @@ class Clib015002003NoteTitleList {
   }
 }
 
-class Clib016002004NoteTitles {
+class Clib016002004NoteTitlesListView {
   Clib015002003NoteTitleList clib015002003noteTitleList =
       Clib015002003NoteTitleList();
   Widget getWidget({int flex = 1, int itemextent = 100}) {
     return Expanded(
-      flex: 1,
-      child: ListView(
-        itemExtent: 100,
-        // children: _getTestList(),
-        children: clib015002003noteTitleList.getWidget(),
-      ),
-      //     child: Container(
-      //   // padding: const EdgeInsets.all(20),
-      //   child: ListView(
-      //     itemExtent: 100,
-      //     // children: _getTestList(),
-      //     children: clib015666002003noteTitleList.getWidget(),
-      //   ),
-      // )
-    );
+        flex: 1,
+        child: ListView(
+          itemExtent: 100,
+          // children: _getTestList(),
+          children: clib015002003noteTitleList.getWidget(),
+        ));
   }
 }

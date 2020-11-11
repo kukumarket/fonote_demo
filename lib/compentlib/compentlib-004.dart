@@ -13,25 +13,40 @@ import 'package:flutter/material.dart';
 // 返回一个包含背景图的BoxDecoration
 
 ////////////////////////////////////////////////////////////////////////////
+///
+int getIconIndex(String iconName) {
+  int mret = 0xe650;
+  if (iconName == "默认图标") {
+    mret = 0xe650;
+  } else if (iconName == "搜索") {
+    mret = 0xe723;
+  } else if (iconName == "right") {
+    mret = 0xe7eb;
+  } else if (iconName == "日历") {
+    mret = 0xe7b6;
+  }
+  return mret;
+}
+
+class Clib017004001IconData {
+  IconData getWidget(
+      {String iconName = "默认图标",
+      double iconSize = 32,
+      Color color = Colors.blue}) {
+    return IconData(getIconIndex(iconName), fontFamily: 'NoteIcons');
+  }
+}
 
 class Clib011004001IconFromNoteIcons {
-  Icon getWidget({String iconName = "默认图标", double iconSize = 32}) {
-    int getIconIndex(String iconName) {
-      int mret = 0xe650;
-      if (iconName == "默认图标") {
-        mret = 0xe650;
-      } else if (iconName == "搜索") {
-        mret = 0xe723;
-      } else if (iconName == "right") {
-        mret = 0xe7eb;
-      } else if (iconName == "日历") {
-        mret = 0xe7b6;
-      }
-      return mret;
-    }
-
-    return Icon(IconData(getIconIndex(iconName), fontFamily: 'NoteIcons'),
-        size: iconSize);
+  Icon getWidget(
+      {String iconName = "默认图标",
+      double iconSize = 32,
+      Color color = Colors.blue}) {
+    return Icon(
+      IconData(getIconIndex(iconName), fontFamily: 'NoteIcons'),
+      size: iconSize,
+      color: color,
+    );
   }
 }
 
@@ -39,10 +54,12 @@ class Clib012004002IconButton {
   Clib011004001IconFromNoteIcons clib011004001iconFromNoteIcons =
       Clib011004001IconFromNoteIcons();
   IconButton getWidget(void Function() onPressedCallback,
-      {String iconName = "默认图标", double iconSize = 32}) {
+      {String iconName = "默认图标",
+      double iconSize = 32,
+      Color color = Colors.blue}) {
     return IconButton(
       icon: clib011004001iconFromNoteIcons.getWidget(
-          iconName: iconName, iconSize: iconSize),
+          iconName: iconName, iconSize: iconSize, color: color),
       onPressed: () {
         onPressedCallback();
       },

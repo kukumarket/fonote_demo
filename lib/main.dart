@@ -16,9 +16,11 @@ import 'package:fonote_demo/second_page/p3-copyright.dart';
 import 'package:fonote_demo/second_page/testpage.dart';
 // import 'package:fonote_demo/db/dbmanager.dart';
 import 'package:fonote_demo/tools/tools.dart';
-import 'package:fonote_demo/datalib/datalib-001.dart';
+import 'package:fonote_demo/datalib/datalib-002.dart';
 
 ScreenParameter screenParameter = new ScreenParameter();
+DatabaseManager databaseManager = DatabaseManager();
+Timer welcomTimer;
 void main() {
   runApp(FooNoteApp());
   //fooNoteApp是本程序的主进程
@@ -94,8 +96,6 @@ class FooNoteApp extends StatelessWidget {
 //This class (or a class that this class inherits from) is marked as '@immutable',
 //but one or more of its instance fields aren't final: MyWelComePage.welcomTimer
 //因此将_welcomTimer更改为 welcomTimer，并放到类外。
-Timer welcomTimer;
-DatabaseManager databaseManager = DatabaseManager();
 
 class MyWelComePage extends StatelessWidget {
   MyWelComePage({Key key, this.parameter}) : super(key: key);
@@ -125,10 +125,6 @@ class MyWelComePage extends StatelessWidget {
 
     screenParameter.init(context);
     // // print("uuid is " + tools.getuuid());
-    print("宽度为:" + screenParameter.width.toString());
-    print("高度为:" + screenParameter.height.toString());
-    print("像素密度为:" + screenParameter.pixelration.toString());
-
     welcomTimer = new Timer(new Duration(seconds: 5), () {
       // 只在倒计时结束时回调
       print("已到5秒,前往笔记页面. ");
@@ -171,20 +167,7 @@ class MyWelComePage extends StatelessWidget {
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              // Text(
-              // 	'You have pushed the button this many times:',
-              // ),
-
-              //Image.file(new File("images/footnote-welcome.png")),
-              // Image.network(
-              // 		"https://pic.downk.cc/item/5f2eb38e14195aa5947a89c3.png"),
               Image.asset("images/footnote-welcome.png"),
-              //D:\flutter_project\foonote_demo\foonote_demo\src\images\footnote-welcome.png
-              //src\images\footnote-welcome.png
-              // Text(
-              // 	'$_counter',
-              // 	style: Theme.of(context).textTheme.headline4,
-              // ),
               _getWelcomeText(),
             ],
           ),

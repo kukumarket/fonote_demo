@@ -6,7 +6,7 @@ import 'package:fonote_demo/compentlib/compentlib-004.dart';
 // import 'package:fonote_demo/function/notestool.dart';
 // import 'package:flutter/rendering.dart';
 import 'package:fonote_demo/tools/tools.dart';
-import 'package:fonote_demo/datalib/datalib-001.dart';
+import 'package:fonote_demo/datalib/datalib-002.dart';
 
 DatabaseManager databaseManager = DatabaseManager();
 
